@@ -19,13 +19,20 @@ ABC105-D 累積和、ハッシュテーブル、余り同じなら良い
 
 6/11
 
-
 <font color="Blue">ABC107-D 二次元累積和</font>
 
-<font color="Red">ABC108-D 転倒数、グラフ、</font>
+<span style="color: red; ">ABC108-D 転倒数、グラフ、</span>
 
 ABC109-D  奇数のとき、端に寄せる
 
 ABC110-D 約数の個数、コンビネーション
 
 ABC111-D 条件付き約数
+
+6/12
+
+ABC114-D 約数カウント
+
+ABC115-D 再帰、f(N,X):レベルNでのX層に含まれるパティ数
+
+ABC116-D <span style="color: red; ">種類Kから変化していくときの値を更新</span>
