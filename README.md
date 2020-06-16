@@ -36,3 +36,7 @@ ABC103-C 数学
 ABC170-D エラトステネスの篩
 ABC170-E heapqの組み合わせ
 ABC170-F dijkstra法、heapqを使うと間に合わない
+東京海上-C imos法
+
+6/16
+東京海上-D 難しい、dpを2^(K/2)で考える
