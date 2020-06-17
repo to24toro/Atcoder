@@ -43,3 +43,6 @@ ABC117-C 各intervalをsort
 ABC118-C　ユークリッド互除法
 ABC118-D dp[i]:マッチをi本使った時の最大値*
 
+6/17
+桁dp　bit全探索
+ABC154-E 桁dp*
