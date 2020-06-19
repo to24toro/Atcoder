@@ -46,3 +46,11 @@ ABC118-D dp[i]:マッチをi本使った時の最大値*
 6/17
 桁dp　bit全探索
 ABC154-E 桁dp*
+
+6/18
+ABC154-C hash table
+ABC154-D 累積和
+ABC119-C DFS全列挙
+
+6/19
+ABC119-D　二部探索 O(QlogN)
