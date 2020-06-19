@@ -1,0 +1,14 @@
+import bisect
+A,B,Q = map(int,input().split())
+INF = 10**18
+s = [-INF] + [int(input()) for i in range(A)] + [INF]
+t = [-INF] + [int(input()) for i in range(B)] + [INF]
+q = [int(input()) for i in range(Q)]
+for x in q:
+    b,d = bisect.bisect_left(s,x),bisect.bisect_left(t,x)
+    res  = INF
+    for S in [s[b-1],s[b]]:
+        for T in [t[d-1],t[d]]:
+            d1,d2 = abs(S-x)+abs(T-S),abs(T-x)+abs(S-T)
+            res = min(res,d1,d2)
+    print(res)
