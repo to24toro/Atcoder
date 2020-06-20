@@ -54,3 +54,9 @@ ABC119-C DFS全列挙
 
 6/19
 ABC119-D　二部探索 O(QlogN)
+
+6/20
+ABC120-C stack
+ABC120-D Union-Find**
+ABC121-D bit排他的論理和, n^n+1=0を利用
+ABC121-C sort
