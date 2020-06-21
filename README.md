@@ -60,3 +60,10 @@ ABC120-C stack
 ABC120-D Union-Find**
 ABC121-D bit排他的論理和, n^n+1=0を利用
 ABC121-C sort
+
+6/21
+やり直し
+ABC104-D dp,O(n)
+ABC108-D 転倒数、グラフ
+ABC110-D 約数の個数、コンビネーション
+ABC116-D 種類Kから変化していくときの値を更新
