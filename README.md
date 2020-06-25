@@ -78,3 +78,18 @@ ABC122-C 部分文字列
 ABC122-D memo化、4文字まで辿れば良い*
 ABC123-C 最小値見つけるだけ
 ABC123-D heapqで最速、もしくはソート
+
+6/24
+ABC99-D 総当たり
+ABC98-D 2 pointer*
+ABC98-C　累積和
+
+6/25
+ABC99-C dp*
+ABC171-F コンビネーション、入れる順番の一意性に気をつける
+ABC97-D UnionFind*
+ABC97-C sort
+セグメント木の勉強
+
+6/26
+
