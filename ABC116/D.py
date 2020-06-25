@@ -1,4 +1,36 @@
-import collections
+# import collections
+# N,K = map(int,input().split())
+# dic = {}
+# A = []
+# for _ in range(N):
+#     t,d = map(int,input().split())
+#     A.append([t,d])
+# A.sort(key = lambda x:x[1],reverse = True)
+# val = 0
+# set_= set()
+# D = collections.deque([])
+# for t,d in A[:K]:
+#     val += d
+#     if t in set_:
+#         D.append(d)
+#     else:
+#         set_.add(t)
+# now = val + len(set_)**2
+# nx = collections.deque(A[K:])
+# ans = now
+# c = len(set_)
+# while len(set_)<K and nx:
+#     i,j = nx.popleft()
+#     if i in set_:
+#         continue
+#     d = D.pop()
+#     diff = j-d+2*c+1
+#     set_.add(j)
+#     now += diff
+#     ans = max(ans,now)
+#     c +=1
+# print(ans)
+
 N,K = map(int,input().split())
 dic = {}
 A = []

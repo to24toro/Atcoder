@@ -9,3 +9,4 @@ def dfs(cur,a,b,c):
     r4 = dfs(cur+1,a,b,c+l[cur]) + 10
     return min(r1,r2,r3,r4)
 print(dfs(0,0,0,0))
+#全てのバリエーション試す、dfs

@@ -54,3 +54,27 @@ ABC119-C DFS全列挙
 
 6/19
 ABC119-D　二部探索 O(QlogN)
+
+6/20
+ABC120-C stack
+ABC120-D Union-Find**
+ABC121-D bit排他的論理和, n^n+1=0を利用
+ABC121-C sort
+
+6/21
+やり直し
+ABC104-D dp,O(n)
+ABC108-D 転倒数、グラフ
+ABC110-D 約数の個数、コンビネーション
+ABC116-D 種類Kから変化していくときの値を更新
+ABC170-A upper()
+ABC170-B sort()
+ABC170-C mod26
+ABC170-D hashmapで高速
+ABC170-E bit 排他的論理和
+
+6/22
+ABC122-C 部分文字列
+ABC122-D memo化、4文字まで辿れば良い*
+ABC123-C 最小値見つけるだけ
+ABC123-D heapqで最速、もしくはソート

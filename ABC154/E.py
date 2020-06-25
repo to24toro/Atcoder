@@ -1,14 +1,7 @@
 N = int(input())
 K = int(input())
 
-def pow(a,n):
-    ans = 1
-    while n > 1:
-        if bin(a&1)==bin(1):
-            ans = ans*a
-        a = a*a
-        n = n>>1
-    return ans
+
 
 def com(N,k):
     if k<0 or k>N: return 0
