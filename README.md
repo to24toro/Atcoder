@@ -121,3 +121,9 @@ ABC90-D 商と余りを考慮してO(N)
 ABC89-D Dが共通であることを利用
 ABC90-C 場合分け
 
+6/30
+ABC88-D bfs
+ABC88-C 算数
+ABC87-D bfs*
+ABC87-C 累積和
+ABC86-C 偶奇判定

@@ -1,0 +1,5 @@
+A,B = map(str,input().split())
+A = int(A)
+b = int(B[0])
+c = int(B[-2:])
+print(A*b+(A*c)//100)
