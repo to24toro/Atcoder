@@ -127,3 +127,27 @@ ABC88-C 算数
 ABC87-D bfs*
 ABC87-C 累積和
 ABC86-C 偶奇判定
+ABC169-A 掛け算
+ABC169-B 積0に気をつける
+ABC169-C 正確性に気をつけて計算
+ABC169-D 約数カウント
+ABC169-E sort
+
+7/1
+ABC169-F 部分集合の部分集合を考える、よくわからない*
+ABC85-D 切りつける刀の最大値以上を先に投げる
+ABC85-C for文
+ABC168-A なし
+ABC168-B なし
+ABC168-C 余弦定理
+ABC168-D bfs
+
+7/2
+ABC168-E 題意を読み換える。a->a/gcd(a,b),b->b/gcd(a,b)*
+ABC83-D S[i]!=S[i-1]の時はmax(i,n-i)が答え*
+ABC82-D dp,xとyは独立に考慮
+ABC84-D エラトステネスの篩
+ABC84-C 到着時間で場合分けO(N^2)
+ABC83-C 2*n*X<=Yなるnを探す
+ABC82-C 連想配列
+
