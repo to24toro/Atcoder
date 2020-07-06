@@ -166,4 +166,12 @@ ABC81-C hash tableのソート
 
 7/5
 ABC80-C bit探索
+ABC173-A なし
+ABC173-B hash table
+ABC173-C bit探索
+ABC173-D
+ABC173-E 場合分け気をつけてpointer、惜しかった、できるべきだった、実力不足
+
+7/6
+ABC173-F 連結成分 = 頂点数-辺数*
 
