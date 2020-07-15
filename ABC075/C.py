@@ -1,29 +1,30 @@
-S = input()
-T = input()
-s = len(S)
-t = len(T)
-f = True
-ans = []
-for i in range(s):
-    tmp = list(S)
-    if t+i>s:
-        continue
-    else:
-        for j in range(t):
-            tmp2 = list(T)
-            if tmp[i+j]=='?':
-                tmp[i+j] = tmp2[j]
-            elif tmp[i+j]== tmp2[j]:
-                continue
-            else:
-                f = False
-        if f:
-            ans.append(tmp)
-    f = True
-res = []
-for a in ans:
-    for i in range(len(a)):
-        if a[i]=='?': a[i]='a'
-    res.append(''.join(a))
-print(min(res) if res else 'UNRESTORABLE')
-        
+n,m = map(int,input().split())
+g = [[]*(n+1) for _ in range(n+1)]
+d = []
+for _ in range(m):
+    a,b = map(int,input().split())
+    g[a].append(b)
+    g[b].append(a)
+    d.append([a,b])
+seen = [False]*(n+1)
+seen[0]=True
+def dfs(s):
+    seen[s]=True
+    for e in g[s]:
+        if not seen[e]:
+            dfs(e)
+cnt = 0
+for i in range(m):
+    a,b = d[i]
+    g[a].remove(b)
+    g[b].remove(a)
+    dfs(1)
+    for i in range(n+1):
+        if not seen[i]:
+            cnt += 1
+            break
+    seen = [False]*(n+1)
+    seen[0]=True
+    g[a].append(b)
+    g[b].append(a)
+print(cnt)

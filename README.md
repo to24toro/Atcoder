@@ -214,4 +214,22 @@ ABC89-C 高々10通り試す
 ABC73-D 数少ないときはワーシャルフロイド、permutation
 ABC73-C set()
 
+7/12
+ABC68-D 数学
+ABC68-C set()
+ABC72-C counter
+ABC72-D swapしていくだけ
+ABC163-A なし
+ABC163-B なし 
+ABC163-C hash table
+ABC163-D i子選ぶときの場合の数
+ABC163-E |x-y|をmax(x-y,y-x)と言い換える。大きい方から左右どっちにいくか決める。iまで使ってjが左に使われている。*
+
+7/13
+ABC75-C dfs
+
+7/14
+ABC67-C 累積和
+ABC67-D bfsで1とnのからの距離をそれぞれ求める
+
 
