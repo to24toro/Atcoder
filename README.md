@@ -231,5 +231,11 @@ ABC75-C dfs
 7/14
 ABC67-C 累積和
 ABC67-D bfsで1とnのからの距離をそれぞれ求める
+ABC66-C 規則性を見つける
+ABC66-D 全場合の数から重複を引く*
 
-
+7/15
+ABC65-C 場合分けしてfrac
+ABC65-D x,yを独立に考えてprim heap (dijkstra)*
+ABC165-D 単調増加に気づく
+ABC165-E 偶奇で分ける*
