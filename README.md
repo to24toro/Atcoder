@@ -239,3 +239,11 @@ ABC65-C 場合分けしてfrac
 ABC65-D x,yを独立に考えてprim heap (dijkstra)*
 ABC165-D 単調増加に気づく
 ABC165-E 偶奇で分ける*
+
+7/16
+ABC162-A なし
+ABC162-B なし
+ABC162-C math.gcd
+ABC162-D O(n^2)で条件２を満たすか考える
+ABC162-E gcd()がxになるときを考える（全てがxの倍数）。xの大きい方から考えて2x,3xを除外。
+ABC162-A 
