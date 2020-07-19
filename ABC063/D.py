@@ -13,7 +13,7 @@ def count(x):
     for i in range(n):
         Hc[i] -= b*x
         if Hc[i]>0:
-            cnt += (Hc[i]-1)//(a-b) + 1
+            cnt += ceil(Hc[i]/(a-b))
     return cnt <= x
 
 l,r = 0, max(H)//b + 1
@@ -23,5 +23,4 @@ while l < r:
         r = mid
     else:
         l = mid+1
-print(r,l)
-print(count(r))
+print(r)
