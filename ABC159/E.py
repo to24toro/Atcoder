@@ -13,13 +13,13 @@ for bit in range(1<<(h-1)):
     count = n-1
     k_cnt = [0]*n
     for j in range(w):
-        tmp = [0]*n
+        tmp = [0]*n #j列ごとに何個チョコあるかを考える
         for i in range(h):
             k_cnt[segment[i]] += int(S[i][j])
             tmp[segment[i]] += int(S[i][j])
             if k_cnt[segment[i]] > k:
                 count += 1
                 for i in range(n):
-                    k_cnt[i] = tmp[i]
+                    k_cnt[i] = tmp[i] #切った後のiセグメントのチョコの数
     ans = min(ans,count)
 print(ans)
