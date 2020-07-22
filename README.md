@@ -283,4 +283,8 @@ dp-B O(NK)でdp
 dp-C それぞれの幸福度を組み合わせて漸化式
 dp-D O(NW)でdp
 dp-E dp[i]を価値がiの時の最小の重さにすれば、価値が最大で10**5なのでO(Nv)で間に合う
-dp-F 
+dp-F LCSの基礎*
+dp-G dfs*
+dp-H 足すだけ
+dp-I i番目まで投げた時の表の枚数をdp[i]
+dp-J
