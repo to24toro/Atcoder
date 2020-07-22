@@ -22,6 +22,25 @@ for i in range(n):
     stack = [i]
     while stack:
         v = stack.pop()
+        seen[v] = True
+        parent[v]=i
+        for nv in f[v]:
+            if seen[nv]: continue
+            d[i].add(nv)
+            stack.append(nv)
+ans = [0]*n
+for i in range(n):
+    group = d[parent[i]]
+    sum = len(group) -len(f[i]) - len(set(g[i])&group) -1
+    ans[i]=sum
+print(*ans)
+for i in range(n):
+    if seen[i]: continue
+    stack = deque()
+    d[i] = set([i])
+    stack = [i]
+    while stack:
+        v = stack.pop()
         parent[v] = i #同じ連結成分をまとめる
         seen[v] = True
         for nv in f[v]:
@@ -31,7 +50,7 @@ for i in range(n):
 ans = [0]*n
 for i in range(n):
     group = d[parent[i]]
-    print(group)
+    #連結成分-直接の友達関係-ブロックしてるけど連結成分にいる人-自分
     sum = len(group)-len(f[i])-len(set(g[i])&group) -1
     ans[i] = sum
 print(*ans)
