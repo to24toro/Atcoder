@@ -287,4 +287,3 @@ dp-F LCSの基礎*
 dp-G dfs*
 dp-H 足すだけ
 dp-I i番目まで投げた時の表の枚数をdp[i]
-dp-J
