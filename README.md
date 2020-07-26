@@ -287,3 +287,10 @@ dp-F LCSの基礎*
 dp-G dfs*
 dp-H 足すだけ
 dp-I i番目まで投げた時の表の枚数をdp[i]
+
+7/21
+M-solution-A なし
+M-solution-B 貪欲法
+M-solution-C Ai>Ai-kに気づく
+M-solution-D 貪欲法
+
