@@ -288,9 +288,18 @@ dp-G dfs*
 dp-H 足すだけ
 dp-I i番目まで投げた時の表の枚数をdp[i]
 
-7/21
+7/23
 M-solution-A なし
 M-solution-B 貪欲法
 M-solution-C Ai>Ai-kに気づく
 M-solution-D 貪欲法
 
+7/24
+M-solution-E 
+ABC62-C せいぜい4パターン
+ABC62-D A[:n]とA[2n:]からheapqでn-2nの間を考える*
+ABC61-C appendでは間に合わない
+
+7/25
+ABC61-D ベルマンフォード*
+ABC137-A 
