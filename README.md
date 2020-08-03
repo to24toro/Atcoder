@@ -335,3 +335,16 @@ JOI2007
 三井住友信託銀行2019-F 相対速度を考えて場合分け
 Square869120Contest #6 B, sortしてmedianを探す
 JOI2008予選-D 全探索するだけ
+
+8/2
+ABC174-A なし
+ABC174-B なし
+ABC174-C dp
+ABC174-D 左右から攻める
+ABC174-E 二分探索,edge case考慮できず
+
+8/3
+GRL_2_A - 最小全域木 基本
+JOI 2010 春合宿 - Finals prim heap*
+AOJ 1127 - Building a Space Station 
+ABC65-D 
