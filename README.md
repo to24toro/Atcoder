@@ -347,4 +347,8 @@ ABC174-E 二分探索,edge case考慮できず
 GRL_2_A - 最小全域木 基本
 JOI 2010 春合宿 - Finals prim heap*
 AOJ 1127 - Building a Space Station 
-ABC65-D 
+
+8/4
+JOI 2009 本選 2 - ピザ 二分探索、エッジケースに気をつける
+ABC77-C 二分探索するだけ
+ABC023-D 最小化問題を二分探索に置き換える、値x以下に全ての風船を押さえる時にその制限時間で貪欲法
