@@ -19,4 +19,4 @@ def get_minimum_videos(videos):
         index += 1
     return ans
 print(get_minimum_videos(videos))
-print((3>>2)&1)
+print(1|1)
