@@ -1,15 +1,27 @@
-m = int(input())
-M = [tuple(map(int,input().split())) for i in range(m)]
-n = int(input())
-N = [tuple(map(int,input().split())) for i in range(n)]
-set_ = set(N)
+from collections import Counter
+n,m = map(int,input().split())
+a = [0]*n
+cs = [[0]*n for _ in range(m)]
 for i in range(n):
-    dx = N[i][0]-M[0][0]
-    dy = N[i][1]-M[0][1]
-    flag = False
-    for j in range(1,m):
-        if (M[j][0] + dx,M[j][1] + dy) not in set_:
-            flag = True
-            break
-    if not flag:
-        print(dx,dy);exit()
+    a[i] = int(input())
+    cs[a[i]-1][i] = 1
+cnt = Counter(a)
+
+for i in range(m):
+    for j in range(1,n):
+        cs[i][j] += cs[i][j-1]
+
+dp = [float('inf')]*(1<<m)
+dp[0] = 0
+
+for i in range(1<<m):
+    d = 0
+    for j in range(m):
+        if i &(1<<j):
+            d += cnt[j+1] #部分集合Sの時のぬいぐるみの個数
+    for j in range(m):
+        if not i&(1<<j):
+            k = cs[j][d + cnt[j+1]-1] #種類j+1のぬいぐるみと先ほどのぬいぐるみの数を足した棚数までにおける種類j+1のぬいぐるみの数
+            if 0<d: k -=cs[j][d-1]
+            dp[i + (1<<j)] = min(dp[i+(1<<j)], dp[i] + cnt[j+1]-k)
+print(dp[(1<<m)-1])
