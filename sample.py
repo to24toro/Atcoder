@@ -18,5 +18,10 @@ def get_minimum_videos(videos):
         ans.append(videos[j])
         index += 1
     return ans
-print(get_minimum_videos(videos))
-print(1|1)
+# print(get_minimum_videos(videos))
+# print(1|1)
+
+set_=set()
+set_.add(1)
+for i in set_:
+    print(i)
