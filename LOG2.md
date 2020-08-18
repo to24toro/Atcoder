@@ -33,3 +33,20 @@ AOJ 1160 - 島はいくつある？ dfs
 JOI 2009 予選 4 - 薄氷渡り dfs
 
 8/17
+ABC138-A なし
+ABC138-B なし
+ABC138-C sort
+ABC138-D dfs, recursiveだとover
+ABC138-E sのi文字目から次のアルファベットまでの距離をメモしておく
+ALDS_10_C - 最長共通部分列
+ALDS_10_A - フィボナッチ数
+DPL_1_A - コイン問題
+DPL_1_B - 0,1ナップザック問題
+DPL_1_C - ナップザック問題
+
+8/18
+ABC138-A なし
+ABC138-B count
+ABC138-C permutation
+ABC138-D Xとa/2の2で割り切れる回数は一致する必要がある。これに気づけなかった。
+ABC138-E Cをソートする。Cがi場面に選ばれ時を考えて足し合わせる

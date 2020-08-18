@@ -31,5 +31,5 @@ while q:
 res = []
 for a in ans[1:]:
     res.append(str(a))
-print(g)
+
 print(' '.join(res))
