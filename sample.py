@@ -21,7 +21,6 @@ def get_minimum_videos(videos):
 # print(get_minimum_videos(videos))
 # print(1|1)
 
-set_=set()
-set_.add(1)
-for i in set_:
-    print(i)
+l = [1]
+s = set(l)
+print(s)
