@@ -21,6 +21,5 @@ def get_minimum_videos(videos):
 # print(get_minimum_videos(videos))
 # print(1|1)
 
-l = [1]
-s = set(l)
-print(s)
+for bit in range(1<<3):
+    print(bit)
