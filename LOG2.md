@@ -123,3 +123,13 @@ ABC178-B なし
 ABC178-C 余事象
 ABC178-D 数学
 ABC178-E マンハッタン
+
+9/16
+ABC50-A replace
+ABC50-B 全探索
+ABC50-C 一つ見つける
+ABC50-D dijkstra or ワーシャルフロイド
+ABC51-A なし
+ABC51-B なし
+ABC51-C sort&count
+ABC51-D 桁dp わからん* https://betrue12.hateblo.jp/entry/2019/02/07/002335
