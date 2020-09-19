@@ -48,3 +48,7 @@ print(0.2*0.03/bunbo)
 #x = -5/3,0
 #f = 2x^3+5x^2
 print(125/27)
+
+ans = ['0','10','1','100','11']
+ans.sort()
+print(ans)
