@@ -133,3 +133,9 @@ ABC51-A なし
 ABC51-B なし
 ABC51-C sort&count
 ABC51-D 桁dp わからん* https://betrue12.hateblo.jp/entry/2019/02/07/002335
+
+9/20
+ABC002-A なし
+ABC002-B なし
+ABC002-A sort
+ABC002-A 包除原理* XYを選ぶ方法のところは簡単。端を使わない本数を包除原理を使って求める。奇数は足して偶数は引く。
