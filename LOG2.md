@@ -145,4 +145,8 @@ ABC015-A なし
 ABC015-B なし
 ABC015-C bfs
 ABC015-D 線分を横切れば良い、　ハマった
+ABC016-A なし
+ABC016-B なし
+ABC016-C itertools product
+ABC016-D dp できなさすぎ*
 
