@@ -150,3 +150,8 @@ ABC016-B なし
 ABC016-C itertools product
 ABC016-D dp できなさすぎ*
 
+9/24
+dp4問
+ABC047-D 発想問題*
+
+
