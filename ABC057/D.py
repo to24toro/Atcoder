@@ -18,9 +18,6 @@ S = []
 for i in range(n):
     S.append(T[i]/(i+1))
 s_max = max(S[a-1:b])
-print(S)
-print(S[a-1:b])
-print(T[:a])
 cnt = 0
 for i,s in enumerate(S):
     if s==s_max and i>=a-1 and i<b:
