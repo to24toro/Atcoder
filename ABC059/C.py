@@ -1,24 +1,34 @@
-n = int(input())
-A = list(map(int,input().split()))
-cnt = 0
-sum = A[0]
-for i in range(1,n):
-    if abs(sum)>=abs(A[i]):
-        cnt += abs(sum+A[i]) + 1
-        if sum>0:
-            A[i] -=abs(sum+A[i]) + 1
-        else:
-            A[i] +=abs(sum+A[i]) + 1
-    sum += A[i]
+N = int(input())
+A = list(map(int, input().split()))
+flag = True
+s = 0
+cnt1 = 0
 cnt2 = 0
-sum = 1 if A[0] >=0
-for i in range(1,n):
-    if abs(sum)>=abs(A[i]):
-        cnt += abs(sum+A[i]) + 1
-        if sum>0:
-            A[i] -=abs(sum+A[i]) + 1
-        else:
-            A[i] +=abs(sum+A[i]) + 1
-    sum += A[i]
-print(cnt)
+for a in A:
+    s += a
+    if flag:
+        x = max(0, 1 - s)
+        cnt1 += x
+        s += x
+        flag = False
+    else:
+        x = max(0, s + 1)
+        cnt1 += x
+        s -= x
+        flag = True
+flag = False
+s = 0
+for a in A:
+    s += a
+    if flag:
+        x = max(0, 1 - s)
+        cnt2 += x
+        s += x
+        flag = False
+    else:
+        x = max(0, s + 1)
+        cnt2 += x
+        s -= x
+        flag = True
 
+print(min(cnt1, cnt2))
