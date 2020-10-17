@@ -1,5 +1,6 @@
 mod = 10**9+7
 n,k = map(int,input().split())
+#使えるnCr
 frac = [1]*(n+1)
 finv = [1]*(n+1)
 for i in range(n):

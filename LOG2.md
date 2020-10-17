@@ -201,4 +201,10 @@ ARC046 B 場合分けするだけ*
 SoundHound C 平均を期待値に言い換える。m-1それぞれで確率を求める。
 SoundHound D s-iとt-iでそれぞれbfs。iで両替する時のcostをソート。
 
+10/17
+ABC010 D 最大流*
+ABC011 D 桁dp*
+M-solution D bfs
+M-solution E 場合わけと逆元
+
 

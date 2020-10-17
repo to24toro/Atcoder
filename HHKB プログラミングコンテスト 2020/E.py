@@ -7,7 +7,6 @@ for i in range(h):
             k +=1
 mod = 10**9+7
 ans = pow(2,k,mod)*k
-
 dist = [(0,1),(0,-1),(1,0),(-1,0)]
 for i in range(h):
     for j in range(w):
