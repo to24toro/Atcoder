@@ -206,5 +206,9 @@ ABC010 D 最大流*
 ABC011 D 桁dp*
 M-solution D bfs
 M-solution E 場合わけと逆元
+ABC180 E 巡回セールス
+
+10/18
+ABC157 E Seg tree*
 
 
