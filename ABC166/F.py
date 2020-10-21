@@ -1,35 +1,23 @@
 N,A,B,C = map(int,input().split())
-import collections
-dic = collections.defaultdict(int)
+S = []
 d = {'A':A,'B':B,'C':C}
-c = {'A':max(A,B,C),'B':A+B+C-max(A,B,C)-min(A,B,C),'C':min(A,B,C)}
-e = {'A':max(A,B,C),'B':A+B+C-max(A,B,C)-min(A,B,C),'C':min(A,B,C)}
 for _ in range(N):
-    s = input()
-    if d[s[0]] == c['A']:
-        dic['A'] += 1
-        a = 'A'
-    elif d[s[0]] == c['B']:
-        dic['B'] += 1
-        a = 'B'
-    else:
-        dic['C'] += 1
-        a = 'C'
-    if d[s[1]] == c['A']:
-        dic['A'] += 1
-        b = 'A'
-    elif d[s[1]] == c['B']:
-        dic['B'] += 1
-        b= 'B'
-    else:
-        dic['C'] += 1
-        b ='C'
-    dic[a+b] += 1
+    S.append(input())
+
 ans = []
-for _ in range(dic['A']):
-    ans.append('A')
-c['A']-=dic['A']
-c['B']+=dic['AB']
-c['C']+=dic['AC']
-if c['B']-dic['B']>=0:
-    
+
+for i,s in enumerate(S):
+    if d[s[0]]==0 and d[s[1]] ==0:
+        print('No');exit()
+    else:
+        if d[s[0]]>d[s[1]] or (d[s[0]]==d[s[1]] and i<N-1 and s[1] in S[i+1]):
+            d[s[1]] += 1
+            d[s[0]] -= 1
+            ans.append(s[1])
+        else:
+            d[s[0]] += 1
+            d[s[1]] -= 1
+            ans.append(s[0])
+print('Yes')
+for a in ans:
+    print(a)
