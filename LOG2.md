@@ -222,3 +222,5 @@ ARC033 C
 
 10/23
 ABC040  D UnionFindと新しい順に考える*
+ABC124 D *
+
