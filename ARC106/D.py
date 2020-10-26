@@ -2,19 +2,34 @@ n,k = map(int,input().split())
 mod = 998244353
 p = pow(2,mod-2,mod)
 A = list(map(int,input().split()))
-s = [1]
-t = [1]
+K = [n,sum(A)]
+for i in range(2,k+1):
+    for j in range(n):
+        A[j]*=A[j]*pow(i,mod-2,mod)
+        A[j]%=mod
+    K.append(sum(A)%mod)
+L = [1]
+
 for i in range(1,k+1):
-    a = 0
-    for j in range(1,n):
-        a += pow(A[j],i,mod)
-    s.append(a)
-    t.append(t[-1]*A[0]%mod)
-    print(s,t)
+    L.append(L[-1]*i)
+    L[-1]%=mod
+
+print(L,K)
+for i in range(1,k+1):
     ans = 0
-    for j in range(len(s)):
-        ans += s[j]*t[len(s)-1-i]
-        ans %=mod
-    print(ans*(n-1)%mod)
+    tmp = 0
+    for j in range(i+1):
+        tmp+=K[j]*K[i-j]
+        tmp%=mod
+    ans+=tmp
+    ans*=L[i]
+    ans-=tmp
+    ans//=2
+    ans%=mod
+    print(ans)
+
+
+
+    
 
 

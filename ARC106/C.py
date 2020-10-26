@@ -6,7 +6,7 @@ if n==1:
     else:
         print(1, 2);exit()
 
-if abs(m)>m:print(-1);exit()
+if abs(m)>n-2:print(-1);exit()
 if m>=0:
     c=1
     print(1,2*(m)+3)
