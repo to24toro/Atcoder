@@ -10,7 +10,7 @@ for i in dic:
     for _ in range(dic[i]):
         A.append(int(i))
 n = len(A)
-print(A)
+
 if n==1:print('Yes' if A[0]%8==0 else 'No');exit()
 if n==2:
     x = 10*A[0]+A[1]

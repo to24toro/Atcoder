@@ -3,7 +3,7 @@ L = []
 for _ in range(n):
     x,y = map(int,input().split())
     L.append((x,y))
-print(1==1.000)
+# print(1==1.000)
 for i in range(n):
     for j in range(i+1,n):
         if L[i][0]==L[j][0]:
