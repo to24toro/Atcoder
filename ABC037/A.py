@@ -1,0 +1,1 @@
+print('YES' if 'T'==input()[-1] else 'NO')
