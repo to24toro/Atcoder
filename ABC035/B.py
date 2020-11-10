@@ -18,4 +18,11 @@ cur = abs(x)+abs(y)
 if T==1:
     print(cur+cnt)
 else:
-    print(abs(cur-cnt))
+    tmp = cnt-abs(x)-abs(y)
+    if tmp>0:
+        if tmp%2==0:
+            print(0)
+        else:
+            print(1)
+    else:
+        print(abs(cur-cnt))

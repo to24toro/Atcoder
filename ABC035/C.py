@@ -7,7 +7,7 @@ for _ in range(q):
     A[r]-=1
 from itertools import accumulate
 A = list(accumulate(A))
-ans = ''
+ans = []
 for a in A:
-    ans+='0' if a%2==0 else '1'
-print(ans[:-1])
+    ans.append('0' if a%2==0 else '1')
+print(''.join(ans[:-1]))
