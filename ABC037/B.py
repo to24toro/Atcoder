@@ -1,6 +1,10 @@
-h1,w1 = map(int,input().split())
-h2,w2 = map(int,input().split())
-if h1==h2 or h1==w2 or h2==w1 or w1==w2:
-    print("YES")
-else:
-    print("NO")
+n,q = map(int,input().split())
+A = [0]*n
+for _ in range(q):
+    l,r,t = map(int,input().split())
+    l-=1
+    r-=1
+    for i in range(l,r+1):
+        A[i]=t
+for a in A:
+    print(a)
