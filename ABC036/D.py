@@ -4,21 +4,17 @@ g = [[] for _ in range(n)]
 for _ in range(n-1):
     a,b = map(int,input().split())
     g[a-1].append(b-1)
-    g[b-1].append(b-1)
-
-from collections import deque
+    g[b-1].append(a-1)
 seen = [False]*n
-q = deque([(0,1,1)])
-seen[0] = True
-ans =1
-while q:
-    x,w,b = q.popleft()
-    f = True
+seen[0]= True
+w = [1]*n
+b = [1]*n
+def helper(x):
+    seen[x]=True
     for y in g[x]:
         if not seen[y]:
-            f = False
-            seen[y] = True
-            q.append((y,w+b,w))
-    if f:
-        ans *=(w+b)
-print(ans)
+            helper(y)
+            w[x] *= w[y]+b[y]
+            b[x] *= w[y]
+helper(0)
+print((w[0]+b[0])%mod)
