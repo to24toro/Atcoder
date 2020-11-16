@@ -239,3 +239,7 @@ ABC031 一つてんんを決めた時の青木の最大値を考える
 NIKKEI2019 D グラフの読み替え、Seg木でやっても良いかも
 NIKKEI2019 C swap
 ABC036 D dfsの使い方甘い
+11/12
+ABC041 Dトポロジカルソート
+11/16
+ABC183 F [defaultdict(int) for _ in range(n)]を持たせられることを知らなかった

@@ -1,50 +1,30 @@
+from bisect import bisect_left
+from collections import namedtuple
+from itertools import permutations
+
 n,m = map(int,input().split())
-W = list(map(int,input().split()))
-M = []
-min_v = float('inf')
-max_w = max(W)
-r = 0
-W_b = []
-T = []
-for i in range(m):
-    l,v = map(int,input().split())
-    if i==0: r = l
-    M.append([l,r])
-    T.append([v,i])
-    min_v = min(min_v,v)
-    if r<l:r=l
-T.sort()
-W_b = []
-I = []
-for v,i in T:
-    W_b.append(v)
-    I.append(i)
-if max_w>min_v: print(-1);exit()
-from itertools import permutations, accumulate
-from bisect import bisect_right
+w = list(map(int,input().split()))
+P = [tuple(map(int,input().split())) for _ in range(m)]
+P.sort(key = lambda x:x[1])
+ls = [p[0] for p in P]
+vs = [p[1] for p in P]
+for i in range(1,m):
+    ls[i] = max(ls[i-1],ls[i])
+
+if max(w)>min(vs):
+    print(-1);exit()
+
 ans = float('inf')
-cnt = [i for i in range(n)]
-for v in permutations(cnt):
-    v = list(v)
-    W_s = [W[v[0]]]
-    res = 0
-    for i in range(1,len(v)):
-        W_s.append(W_s[-1]+W[v[i]])
-
-    for i,w in enumerate(W_s):
-        if i==0: continue
-        
-        idx = bisect_right(W_b,w)
-        # print(idx)
-        if idx ==0:
-            r = 0
-        else:
-            q = I[idx-1]
-            r = M[q][1]
-        res += r
-
-    ans = min(ans,res)
-        
+for ws in permutations((w)):
+    pref = [ws[0]]
+    for i in range(1,n):
+        pref.append(pref[i-1]+ws[i])
+    dp = [0]*n
+    for i in range(n):
+        for j in range(i):
+            interval = pref[i]-(pref[j-1] if j>=1 else 0)
+            idx = bisect_left(vs,interval)
+            need = ls[idx-1] if idx>=1 else 0
+            dp[i] = max(dp[i],dp[j]+need)
+    ans = min(ans,dp[-1])
 print(ans)
-    
-
