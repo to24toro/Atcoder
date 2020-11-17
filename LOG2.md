@@ -242,4 +242,7 @@ ABC036 D dfsの使い方甘い
 11/12
 ABC041 Dトポロジカルソート
 11/16
-ABC183 F [defaultdict(int) for _ in range(n)]を持たせられることを知らなかった
+ABC183 F [defaultdict(int) for _ in range(n)]を持たせられることを知らなかった,小さい方からマージしていく
+ARC105 C全列挙+工夫した二分探索
+
+
