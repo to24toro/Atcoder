@@ -6,6 +6,7 @@ def pow_doubling(m,n,mod):
             ans *=m
             ans %=mod
         m*=m
+        m %=mod
         n = n>>1
     return ans
 print(pow_doubling(m,n,10**9+7))

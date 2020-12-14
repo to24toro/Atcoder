@@ -7,4 +7,4 @@ def extgcd(a,b,d = 0):
         x,y,g = extgcd(b,a%b)
         x, y = y,  x - a // b * y
     return x,y,g
-print(extgcd(a,b))
+print(*extgcd(a,b)[:2])
