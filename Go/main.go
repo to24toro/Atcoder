@@ -1,59 +1,56 @@
-/*
- *
- * Copyright 2015 gRPC authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
-// Package main implements a client for Greeter service.
 package main
 
 import (
-	"context"
-	"log"
-	"os"
-	"time"
+	"fmt"
 
-	"google.golang.org/grpc"
-	// "google.golang.org/grpc"
-	// pb "google.golang.org/grpc/examples/helloworld/helloworld"
-)
-
-const (
-	address     = "localhost:50051"
-	defaultName = "world"
+	"github.com/dmitryikh/leaves"
+	"github.com/dmitryikh/leaves/mat"
+	"github.com/dmitryikh/leaves/util"
 )
 
 func main() {
-	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	// loading test data
+	test, err := mat.DenseMatFromCsvFile("iris_test.tsv", 0, false, "\t", 0.0)
 	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		panic(err)
 	}
-	defer conn.Close()
-	c := pb.NewGreeterClient(conn)
 
-	// Contact the server and print out its response.
-	name := defaultName
-	if len(os.Args) > 1 {
-		name = os.Args[1]
-	}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+	// loading model
+	model, err := leaves.LGEnsembleFromFile("lg_iris.model", true)
 	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+		panic(err)
 	}
-	log.Printf("Greeting: %s", r.GetMessage())
+	fmt.Printf("Name: %s\n", model.Name())
+	fmt.Printf("NFeatures: %d\n", model.NFeatures())
+	fmt.Printf("NOutputGroups: %d\n", model.NOutputGroups())
+	fmt.Printf("NEstimators: %d\n", model.NEstimators())
+	fmt.Printf("Transformation: %s\n", model.Transformation().Name())
+
+	// loading true predictions as DenseMat
+	truePredictions, err := mat.DenseMatFromCsvFile("lg_iris_true_predictions.txt", 0, false, "\t", 0.0)
+	if err != nil {
+		panic(err)
+	}
+	truePredictionsRaw, err := mat.DenseMatFromCsvFile("lg_iris_true_predictions_raw.txt", 0, false, "\t", 0.0)
+	if err != nil {
+		panic(err)
+	}
+
+	// preallocate slice to store model predictions
+	predictions := make([]float64, test.Rows*model.NOutputGroups())
+	// do predictions
+	model.PredictDense(test.Values, test.Rows, test.Cols, predictions, 0, 1)
+	// compare results
+	const tolerance = 1e-6
+	if err := util.AlmostEqualFloat64Slices(truePredictions.Values, predictions, tolerance); err != nil {
+		panic(fmt.Errorf("different predictions: %s", err.Error()))
+	}
+
+	// compare raw predictions (before transformation function)
+	rawModel := model.EnsembleWithRawPredictions()
+	rawModel.PredictDense(test.Values, test.Rows, test.Cols, predictions, 0, 1)
+	if err := util.AlmostEqualFloat64Slices(truePredictionsRaw.Values, predictions, tolerance); err != nil {
+		panic(fmt.Errorf("different raw predictions: %s", err.Error()))
+	}
+	fmt.Println("Predictions the same!")
 }
