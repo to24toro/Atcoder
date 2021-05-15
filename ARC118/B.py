@@ -1,10 +1,12 @@
 k,n,m = map(int,input().split())
 A = list(map(int,input().split()))
-if m<=n:
+if m==n:
+    print(*A);exit()
+if m<n:
     B = [(m*a)//n for a in A]
     C = []
     for i in range(k):
-        C.append([A[i]/n-B[i]/m,i,B[i]])
+        C.append([A[i]*m-B[i]*n,i,B[i]])
     C.sort(reverse=True)
     diff = m-sum(B)
     # print(C)
@@ -19,7 +21,7 @@ else:
     B = [(m*a)//n for a in A]
     C = []
     for i in range(k):
-        C.append([B[i]/m-A[i]/n,i,B[i]])
+        C.append([B[i]*n-A[i]*m,i,B[i]])
     C.sort()
     diff = m-sum(B)
     for i in range(diff):
