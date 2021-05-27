@@ -1,27 +1,18 @@
-n,x = map(int,input().split())
-L = [int(input()) for _ in range(n)]
-A = L[:n//2]
-B = L[n//2:]
-a = []
-b = []
-from collections import defaultdict
-def helper(A):
-    N = len(A)
-    dic = defaultdict(int)
-    for bit in range(1<<N):
-        tmp = 0
-        for j in range(N):
-            if (bit>>j)&1:
-                tmp+=A[j]
-        dic[tmp] += 1
-    return dic
-da = helper(A)
-db = helper(B)
-ans = 0
-for k,v in da.items():
-    if k==x:
-        ans += v
-    else:
-        ans +=v*db[x-k]
-# ans += db[x]
-print(ans)
+from itertools import accumulate
+
+
+n,m = map(int,input().split())
+L = [list(map(int,input().split())) for _ in range(n)]
+S = [0]*(m+1)
+sum = 0
+for l,r,s in L:
+    l-=1
+    S[l]+=s
+    S[r]-=s
+    sum += s
+SS = list(accumulate(S))
+mn = min(SS[:-1])
+if mn==0:
+    print(sum)
+else:
+    print(sum-mn)

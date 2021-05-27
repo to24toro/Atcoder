@@ -11,7 +11,7 @@ A = list(map(int,input().split()))
 S = list(accumulate(A))
 T = list(accumulate(S))
 mx = 0
-print(S)
+# print(S)
 for i in range(n):
     mx = max(A[i],mx)
     if i==0:
