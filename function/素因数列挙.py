@@ -1,5 +1,15 @@
-primes = [[] for _ in range(M+1)]
-for p in range(2,M+1):
-    if primes[p]:continue
-    for i in range(p,M+1,p):
-        primes[i].append(p)
+def prime_factorize(n):
+    a = []
+    while n % 2 == 0:
+        a.append(2)
+        n //= 2
+    f = 3
+    while f * f <= n:
+        if n % f == 0:
+            a.append(f)
+            n //= f
+        else:
+            f += 2
+    if n != 1:
+        a.append(n)
+    return a
