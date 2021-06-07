@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+t = int(input())
+for _ in range(t):
+    n,a,b,c,d = map(int,input().split())
+    ans = n*d
+    
+=======
 T = int(input())
 two = [1]
 for i in range(1,61):
@@ -65,3 +72,4 @@ for _ in range(testcase):
     dc[x] = ret
     return ret
   print(solve(n))
+>>>>>>> d3bd05f872ad9b47fabf3d1f5a5eedade6c7b8b6
