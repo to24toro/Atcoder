@@ -164,42 +164,53 @@ func factorial(n, m int) ([]int, []int) {
 	}
 	return f, inv
 }
+func arrayEqual(A []int, B []int, N int) bool {
+	for i := 0; i < N; i++ {
+		if A[i] != B[i] {
+			return false
+		}
+	}
+	return true
+}
 
 var P1 int = 1000000007
 var P2 int = 998244353
 var P3 int = 1<<61 - 1
 var BINF int = 1 << 60
+var (
+	scanner = bufio.NewScanner(os.Stdin)
+)
 
 func main() {
 	buf := make([]byte, 0)
-	n := iSScan()
-	k := iSScan()
-	a := initSlice(n)
-	as := make([]int, n+1)
-	for i:=0; i<n; i++ {
-		as[i+1] = a[i] + as[i]
+	sc.Buffer(buf, P1)
+	sc.Split(bufio.ScanWords)
+
+	n := iScan()
+	k := iScan()
+	a := iSScan(n)
+	for i := 0; i < k; i++ {
+		b := make([]int, n+1)
+		for j := 0; j < n; j++ {
+			l := max(j-a[j], 0)
+			r := min(n, j+a[j]+1)
+			b[l]++
+			b[r]--
+		}
+		for j := 0; j < n; j++ {
+			b[j+1] += b[j]
+		}
+		if arrayEqual(a, b, n) {
+			break
+		}
+
+		a = b[:len(b)-1]
 	}
-	x:= make([]int,0,n*(n+1)/2)
-
-	 for i:=0; i<n:i++{
-		 for j:=0;j<n+1;j++{
-			 x = append(x,as[j]-as[i])
-		 }
-	 }
-
-	 ans :=0
-	 for i:=42;i>=0;i-- {
-		 y := make([]int,0,len(x))
-		 for j:=0;j<len(x);j++{
-			 if (x[j]>>i)&1==1{
-				 y = append(y,x[j])
-			 }
-		 }
-		 if len(y)>=k {
-			 ans += 1<<uint(i)
-			 x = make([]int,len(y))
-			 copy(x,y)
-		 }
-	 }
-	 fmt.Println(ans)
+	ans := a
+	w := bufio.NewWriter(os.Stdout)
+	defer w.Flush()
+	for i := 0; i < n; i++ {
+		fmt.Fprint(w, ans[i], " ")
+	}
+	fmt.Fprintln(w)
 }

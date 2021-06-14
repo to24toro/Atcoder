@@ -172,34 +172,29 @@ var BINF int = 1 << 60
 
 func main() {
 	buf := make([]byte, 0)
-	n := iSScan()
-	k := iSScan()
-	a := initSlice(n)
-	as := make([]int, n+1)
-	for i:=0; i<n; i++ {
-		as[i+1] = a[i] + as[i]
+	sc.Buffer(buf, P1)
+	sc.Split(bufio.ScanWords)
+	n := iScan()
+	A := iSScan(n)
+	B := iSScan(n)
+	c := make([]int, 0)
+	d := make([]int, 0)
+	for i := 0; i < n; i++ {
+		if i%2 == 1 {
+			c = append(c, B[i]-A[i])
+		} else {
+			d = append(d, B[i]-A[i])
+		}
 	}
-	x:= make([]int,0,n*(n+1)/2)
-
-	 for i:=0; i<n:i++{
-		 for j:=0;j<n+1;j++{
-			 x = append(x,as[j]-as[i])
-		 }
-	 }
-
-	 ans :=0
-	 for i:=42;i>=0;i-- {
-		 y := make([]int,0,len(x))
-		 for j:=0;j<len(x);j++{
-			 if (x[j]>>i)&1==1{
-				 y = append(y,x[j])
-			 }
-		 }
-		 if len(y)>=k {
-			 ans += 1<<uint(i)
-			 x = make([]int,len(y))
-			 copy(x,y)
-		 }
-	 }
-	 fmt.Println(ans)
+	ans := sum(A)
+	n /= 2
+	sorted_c := sorted(c, true)
+	sorted_d := sorted(d, true)
+	// fmt.Println(sorted_c)
+	for i := 0; i < n; i++ {
+		if sorted_c[i]+sorted_d[i] > 0 {
+			ans += sorted_c[i] + sorted_d[i]
+		}
+	}
+	fmt.Print(ans)
 }

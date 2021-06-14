@@ -6,10 +6,13 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 
-n = int(input())
 A = list(map(int,input().split()))
-A.sort()
-if n==1:
-    print(0);exit()
-if n==2:
-    print()
+set_ = set(A)
+if len(set_)==3:
+    print(0)
+else:
+    A.sort()
+    if A[0]==A[1]:
+        print(A[-1])
+    else:
+        print(A[0])

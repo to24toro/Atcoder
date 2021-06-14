@@ -172,34 +172,36 @@ var BINF int = 1 << 60
 
 func main() {
 	buf := make([]byte, 0)
-	n := iSScan()
-	k := iSScan()
-	a := initSlice(n)
+	sc.Buffer(buf, P1)
+	sc.Split(bufio.ScanWords)
+	n := iScan()
+	k := iScan()
+	a := iSScan(n)
 	as := make([]int, n+1)
-	for i:=0; i<n; i++ {
+	for i := 0; i < n; i++ {
 		as[i+1] = a[i] + as[i]
 	}
-	x:= make([]int,0,n*(n+1)/2)
+	x := make([]int, 0, n*(n+1)/2)
 
-	 for i:=0; i<n:i++{
-		 for j:=0;j<n+1;j++{
-			 x = append(x,as[j]-as[i])
-		 }
-	 }
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n+1; j++ {
+			x = append(x, as[j]-as[i])
+		}
+	}
 
-	 ans :=0
-	 for i:=42;i>=0;i-- {
-		 y := make([]int,0,len(x))
-		 for j:=0;j<len(x);j++{
-			 if (x[j]>>i)&1==1{
-				 y = append(y,x[j])
-			 }
-		 }
-		 if len(y)>=k {
-			 ans += 1<<uint(i)
-			 x = make([]int,len(y))
-			 copy(x,y)
-		 }
-	 }
-	 fmt.Println(ans)
+	ans := 0
+	for i := 42; i >= 0; i-- {
+		y := make([]int, 0, len(x))
+		for j := 0; j < len(x); j++ {
+			if (x[j]>>i)&1 == 1 {
+				y = append(y, x[j])
+			}
+		}
+		if len(y) >= k {
+			ans += 1 << uint(i)
+			x = make([]int, len(y))
+			copy(x, y)
+		}
+	}
+	fmt.Println(ans)
 }
