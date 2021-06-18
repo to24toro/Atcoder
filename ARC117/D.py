@@ -1,52 +1,64 @@
-
-d = [0]
+from itertools import *
+from collections import *
+from heapq import *
+import math
+import sys
+sys.setrecursionlimit(1<<20)
 n = int(input())
-C = input()
-A = []
-for c in C:
-    if c=='B':
-        A.append(0)
-    elif c=='W':
-        A.append(1)
-    else:
-        A.append(2)
-for i in range(1,n+1):
-    cnt = 0
-    while i%3==0:
-        cnt += 1
-        i//=3
-    d.append(d[-1]+cnt)
-# print(d)
-mod = 3
-frac = [1]*(n+1)
-finv = [1]*(n+1)
+g = [[] for _ in range(n)]
+for _ in range(n-1):
+    a,b = map(int,input().split())
+    a-=1;b-=1
+    g[a].append(b)
+    g[b].append(a)
+D = [0]*n
+D[0]=1
+def dfs(s,cur):
+    for t in g[s]:
+        if not D[t]:
+            D[t]=cur+1
+            dfs(t,cur+1)
+    return
+dfs(0,1)
+# print(D)
+p = D.index(max(D))
+D = [0]*n
+D[p]=1
+dfs(p,1)
+# p = D.index(max(D))
+# D = [0]*n
+# D[p]=1
+# dfs(p,1)
+print(*D)
+while d:
+    for i in g[s]:
+        if dist[i]==d-1:
+            x.append((s,i))
+            y.add((s,i))
+            s=i
+            d-=1
+            break
+F = [deque() for _ in range(n)]
 for i in range(n):
-    k = i+1
-    while k%3==0:
-        k//=3
-    frac[i+1] = (k)*frac[i]%mod
-finv[-1] = pow(frac[-1],mod-2,mod)
-for i in range(1,n+1):
-    k = n-i+1
-    while k%3==0:
-        k//=3
-    finv[n-i] = finv[n-i+1]*k%mod
-ans = [1]
-for i in range(1,n):
-    if d[n-1]!=d[n-i-1]+d[i]:
-        ans.append(0)
-    else:
-        res = frac[n-1]*finv[n-1-i]*finv[i]
-        res%=mod
-        ans.append(res)
-a = 0
-for i in range(n):
-    a+=A[i]*ans[i]
-a*=pow(-1,n-1)
-a%=mod
-if a==0:
-    print('B')
-elif a==1:
-    print('W')
-else:
-    print('R')
+    for j in g[i]:
+        if not (i,j) in y and not (j,i) in y:
+            F[i].append(j)
+now = 1
+def dfs(s,now):
+    st = []
+    st.append(s)
+    ans[s-1] = now
+    while st:
+        i = st[-1]
+        f = 0
+        while F[i]:
+            j = F[i].popleft()
+            if not ans[j-1]:
+                f = 1
+                ans[j-1]=now
+                st.append(j)
+                break
+        if not f:
+            st.pop()
+            now +=1
+    return now

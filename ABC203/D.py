@@ -9,77 +9,42 @@ sys.setrecursionlimit(1<<20)
 n,k = map(int,input().split())
 A = [list(map(int,input().split())) for _ in range(n)]
 
+def da_generate(h,w,a,m):
+    da = [[0]*w for j in range(h)]
+    da[0][0] = 1 if a[0][0]>=m else 0
+    for i in range(1,w):
+        da[0][i] = da[0][i-1]+(a[0][i]>=m)
+    for i in range(1,h):
+        cnt_w = 0
+        for j in range(w):
+            cnt_w += a[i][j]>=m
+            da[i][j] = da[i-1][j]+cnt_w
+    return da
+def da_calc(p,q,x,y):
+    if p > x or q > y:
+        return 0
+    if p == 0 and q == 0:
+        return da[x][y]
+    if p == 0:
+        return da[x][y]-da[x][q-1]
+    if q == 0:
+        return da[x][y]-da[p-1][y]
+    return da[x][y]-da[p-1][y]-da[x][q-1]+da[p-1][q-1]
 
-def partition(lst, pivot):
-    """Modifired partition algorithm in section 7.1"""
-    pivot_idx = None
-    for idx, value in enumerate(lst):
-        if value == pivot:
-            pivot_idx = idx
-    if pivot_idx is None:
-        raise Exception
-    lst[pivot_idx], lst[-1] = lst[-1], lst[pivot_idx]
-    pivot = lst[-1]
-    i = -1
-    for j, val in enumerate(lst[:-1]):
-        if val <= pivot:
-            i += 1
-            lst[i], lst[j] = lst[j], lst[i]
-    lst[i + 1], lst[-1] = lst[-1], lst[i + 1]
-    return i + 1
- 
-def select(lst, i):
-    """Selection in linear time"""
-    if len(lst) == 1:
-        return lst[0]
-    split_lists = [lst[i * 5: (i + 1) * 5] for i in range((len(lst) + 4) // 5)]
-    split_list_medians = [
-        sorted(split_list)[(len(split_list) - 1) // 2]
-        for split_list in split_lists
-    ]
-    x = select(split_list_medians, (len(split_list_medians) - 1) // 2)
-    k = partition(lst, x)
-    if i == k:
-        return x
-    elif i < k:
-        return select(lst[:k], i)
+ok,ng = -1,10**9+1
+chk = k**2//2+1
+while ng-ok>1:
+    m = (ng+ok)//2
+    da = da_generate(n,n,A,m)
+    # print(m,da)
+    judge =True
+    for i in range(n-k+1):
+        for j in range(n-k+1):
+            if da_calc(i,j,i+k-1,j+k-1)<chk:
+                judge=False
+                break
+    if judge:
+        ok = m
     else:
-        return select(lst[k + 1:], i - (k + 1))
- 
-def median_linear(lst):
-    """Calculate median by selection algorithm"""
-    return select(lst, (len(lst) - 1) // 2)
-
-ans = float('inf')
-
-S = []
-for jj in range(k):
-    for ii in range(k):    
-        S.append(A[ii][jj])
-
-for i in range(n-k+1):
-    S = []
-    T = []
-    for jj in range(k):
-        for ii in range(i,i+k):    
-            S.append(A[ii][jj])
-            T.append(A[ii][jj])
-    print(S)
-    ans= min(ans,median_linear(S))
-    for j in range(1,n-k+1):
-        for _ in range(k):
-            S.pop(0)
-            T.pop(0)
-        for kk in range(k):
-            # print(i,kk,j+k,j,k)
-            print(S,A[i+kk][j+k-1])
-            S.append(A[i+kk][j+k-1])
-            T.append(A[i+kk][j+k-1])
-        # print(S)
-        tmp = median_linear(T)
-        # print(S,tmp)
-        T = S
-        ans = min(ans,tmp)
-print(ans)
-
-
+        ng = m
+print(ok)
