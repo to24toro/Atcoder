@@ -1,11 +1,3 @@
-from itertools import *
-from collections import *
-from heapq import *
-from heapq import *
-import math
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(1<<20)
 from collections import deque
 class Dinic:
     def __init__(self, N):
@@ -78,21 +70,5 @@ class Dinic:
             while flow_new:
                 flow += flow_new
                 flow_new = self.dfs(s, t, self.inf)
-H,W,N = map(int,input().split())
-D = Dinic(H+W+2+N*2)
-s = H+W+1
-t = s+1
-for h in range(1,H+1):
-    D.add_edge(s,h,1)
-for w in range(H+1,H+W+1):
-    D.add_edge(w,t,1)
-for i in range(N):
-    a,b,c,d = map(int,input().split())
-    u = t+i+1
-    v = u+N
-    D.add_edge(u,v,1)
-    for h in range(a,c+1):
-        D.add_edge(h,u,1)
-    for w in range(b+H,d+H+1):
-        D.add_edge(v,w,1)
-print(D.max_flow(s,t))
+
+

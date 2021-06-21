@@ -20,21 +20,10 @@ def nCr(n,r):
     return frac[n]*finv[n-r]*finv[r]%mod
 if k<n-m:
     print(0);exit()
-ans = nCr(n+m,m)
+ans = nCr(n+m,m)-nCr(m+n,m+k+1)
 # print(ans)
+print(ans%mod)
 
-for i in range(1,n+1):
-    p = (k+i)//2
-    if i%2:
-        for j in range(p+1,n+1):
-            # print(i,j,nCr(i,j),nCr(n+m-i,j-n))
-            ans += nCr(i,j)*nCr(n+m-i,j-n)
-            ans%=mod
-    else:
-        for j in range(p+1,n+1):
-            ans -= nCr(i,j)*nCr(n+m-i,j-n)
-            ans%=mod
-    # print(i,p,ans,k)
-print(ans)
+
 
 
