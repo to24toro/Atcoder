@@ -8,3 +8,7 @@ import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 
+n,m,k = map(int,input().split())
+
+MOD = 10**9+7
+
