@@ -19,8 +19,6 @@ for i in range(n):
         for k in range(cnt+1):
             dp[i+1][i+1][k] = min(dp[i+1][i+1][k],dp[i][j][k] + max(0,H[i+1]-H[j]))
             dp[i+1][j][k+1] = min(dp[i+1][j][k+1],dp[i][j][k])
-for j in range(n+1):
-    for k in range(cnt+1):
-        ans = min(ans,dp[n][j][k])
+            ans = min(ans,dp[n][j][k])
 print(ans)
 
