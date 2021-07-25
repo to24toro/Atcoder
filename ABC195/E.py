@@ -5,6 +5,7 @@ from bisect import *
 from copy import *
 import math
 import sys
+<<<<<<< HEAD
 from functools import lru_cache
 
 sys.setrecursionlimit(1<<20)
@@ -25,3 +26,7 @@ def dp(i,j):
         return dp(i-1,j) & dp(i-1,tmp)
 
 print(dp(N-1,0))
+=======
+sys.setrecursionlimit(1<<20)
+INF = float('inf')
+>>>>>>> 06f3b92c3ced612344c5c213a76a13a72189e505
