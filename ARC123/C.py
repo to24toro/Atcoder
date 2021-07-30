@@ -8,6 +8,7 @@ import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 
-MOD = 998244353
-
-n,m = map(int,input().split())
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    

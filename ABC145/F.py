@@ -17,6 +17,7 @@ ans = INF
 for i in range(n):
     for j in range(n+1):
         for k in range(cnt+1):
+            if dp[i][j][k]==INF:continue
             dp[i+1][i+1][k] = min(dp[i+1][i+1][k],dp[i][j][k] + max(0,H[i+1]-H[j]))
             dp[i+1][j][k+1] = min(dp[i+1][j][k+1],dp[i][j][k])
             ans = min(ans,dp[n][j][k])

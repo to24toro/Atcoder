@@ -8,6 +8,5 @@ import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 
-MOD = 998244353
-
-n,m = map(int,input().split())
+a,b = map(int,input().split())
+print((a-b)/3+b)
