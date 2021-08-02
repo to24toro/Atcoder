@@ -9,6 +9,7 @@ n,m = map(int,input().split())
 dp = [[float('inf')]*n for _ in range(n)]
 for i in range(n):
     dp[i][i] = 0
+
 for _ in range(m):
     a,b,c = map(int,input().split())
     a-=1
@@ -19,7 +20,7 @@ for _ in range(m):
 for k in range(n):
     for i in range(n):
         for j in range(n):
-            dp[i][j] = min(dp[i][j],dp[i][k]+dp[k][j])
+            dp[i][j] = min(dp[i][j],dp[i][k] + dp[k][j])
 k = int(input())
 ANS = []
 for _ in range(k):
@@ -29,10 +30,7 @@ for _ in range(k):
     y-=1
     for i in range(n):
         for j in range(i+1,n):
-            if dp[i][j]>dp[i][x]+z+dp[y][j]:
-                dp[i][j]=dp[i][x]+z+dp[y][j]
-            if dp[i][j]>dp[i][y]+z+dp[x][j]:
-                dp[i][j]=dp[i][y]+z+dp[x][j]
+            dp[i][j] = min(dp[i][j],dp[i][x] + dp[y][j] + z,dp[i][y] + dp[x][j] + z)
             dp[j][i] = dp[i][j]
             ans += dp[i][j]
     ANS.append(ans)

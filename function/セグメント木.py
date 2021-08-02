@@ -44,7 +44,7 @@ class SegmentTree:
         k+=self.num-1
         return self.seg[k]
 
-def op(a,b): return a ^ b
+def op(a,b): return min(a,b)
 st = SegmentTree(n,segfunc=op,ele = 0)
 # st.init(A)
 
