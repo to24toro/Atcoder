@@ -6,6 +6,7 @@ from copy import *
 import math
 import sys
 import numpy as np
+from functools import lru_cache
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 dx = [1,-1,0,0]

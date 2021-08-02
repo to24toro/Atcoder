@@ -6,6 +6,9 @@ from copy import *
 import math
 import sys
 sys.setrecursionlimit(1<<20)
+<<<<<<< HEAD
+INF = float('inf')
+=======
 INF = float('inf')
 
 A,B = map(int,input().split())
@@ -28,3 +31,4 @@ print(sum(dp))
 
 
 
+>>>>>>> 06f3b92c3ced612344c5c213a76a13a72189e505
