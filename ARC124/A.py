@@ -6,9 +6,6 @@ from copy import *
 import math
 import sys
 sys.setrecursionlimit(1<<20)
-<<<<<<< HEAD
-INF = float('inf')
-=======
 INF = float('inf')
 
 n,K = map(int,input().split())
@@ -36,4 +33,3 @@ else:
         ans%=MOD
     print(ans)
 
->>>>>>> d3b13ade2f4f0f628896542768ac5119b659c4e1

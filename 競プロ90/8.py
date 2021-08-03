@@ -36,5 +36,5 @@ for i in range(1,n+1):
             dp[i][j] %=MOD
         else:
             dp[i][j] = dp[i-1][j]
-print(dp)
+# print(dp)
 print(dp[-1][-1]%MOD)

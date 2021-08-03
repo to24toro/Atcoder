@@ -3,18 +3,12 @@ from collections import *
 from heapq import *
 from bisect import *
 from copy import *
-import math
 import sys
-import numpy as np
 sys.setrecursionlimit(1<<20)
-INF = float('inf')
-dx = [1,-1,0,0]
-dy = [0,0,1,-1]
-MOD = 10**9+7
-def dp(i,j,val):
-    return [[val]*j for _ in range(i)]
+ANS = []
 n = int(input())
-if n%2:exit()
+if n%2:
+    print();exit()
 for bit in range(1<<n):
     A = []
     cur = 0
@@ -35,4 +29,6 @@ for bit in range(1<<n):
     if s != n//2:
         f = False
     if f:
-        print(ans)
+        ANS.append(ans)
+ANS.sort()
+print(*ANS,sep = '\n')
