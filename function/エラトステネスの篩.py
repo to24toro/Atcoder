@@ -1,51 +1,61 @@
-# class MultipleFactorization:
-#     """
-#     エラトステネスの篩の応用で、複数の整数の素因数分解を高速に行う
-#     空間計算量: O(N)
-#     時間計算量: クエリ1回あたりO(logN)
-#     """
- 
-#     def __init__(self, n):
-#         self.n = n
-#         self.sieve = [i for i in range(n + 1)]
-#         self._set()
- 
-#     def _set(self):
-#         i = 2
-#         while i <= self.n:
-#             self.sieve[i] = 25
-#             i += 2
+from itertools import *
+from collections import *
+from heapq import *
+from bisect import *
+from copy import *
+import math
+import sys
+sys.setrecursionlimit(1<<20)
+INF = float('inf')
+dx = [1,-1,0,0]
+dy = [0,0,1,-1]
+MOD = 10**9+7
 
-#         for i in range(3, self.n + 1):
-#             if self.sieve[i] == i:
-#                 j = i ** 2
-#                 while j <= self.n:
-#                     if self.sieve[j] == j:
-#                         self.sieve[j] = i
-#                     j += i
- 
-#     def factorization(self, x):
-#         factors = []
-#         while x > 1:
-#             k = self.sieve[x]
-#             factors.append(k)
-#             x //= k
-#         return factors
+n,k = map(int,input().split())
+class  MultipleFactorization:
+    def __init__(self,n):
+        self.data = [i for i in range(n+1)]
+        self.n = n
+        self._get_sieve()
+    def _get_sieve(self):
+        import math
+        for i in range(2,int(math.sqrt(self.n))+1):
+            if self.data[i]!=i:
+                continue
+            j = i
+            while j <=self.n:
+                if self.data[j]==j:
+                    self.data[j] = i
+                j +=i
+    def prime(self):
+        res = []
+        for i in range(2,self.n+1):
+            if self.data[i]==i:
+                res.append(i)
+        return res
+    def factorization(self,x):
+        factors = []
+        while x > 1:
+            k = self.data[x]
+            factors.append(k)
+            x //= k
+        return factors
+    def count_prime(self,x):
+        cnt = 0
+        s = set()
+        while x>1:
+            k = self.data[x]
+            if k not in s:
+                cnt += 1
+                s.add(k)
+            x//=k
+        return cnt
+multi = MultipleFactorization(n)
 
+ans =0
+for i in range(2,n+1):
+    cnt = multi.count_prime(i)
+    if cnt>=k:
+        ans += 1
 
-
-def get_sieve_of_eratosthenes_new(n):
-    import math
-    if not isinstance(n, int):
-        raise TypeError('n is int type.')
-    if n < 2:
-        raise ValueError('n is more than 2')
-    prime = []
-    limit = math.sqrt(n)
-    data = [i + 1 for i in range(1, n)]
-    while True:
-        p = data[0]
-        if limit <= p:
-            return prime + data
-        prime.append(p)
-        data = [e for e in data if e % p != 0]
+print(ans)
