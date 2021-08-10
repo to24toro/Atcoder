@@ -98,3 +98,38 @@ def dp(n,k):
     memo[(n,k)] = res
     return res
 print(dp(N,K)-1)
+
+
+from collections import defaultdict
+N,K = input().split()
+K = int(K)
+INF = K + 1
+dp = defaultdict(int)
+eq_prod = 1
+for i in range(len(N)):
+    digit = ord(N[i])-ord('0')
+    nxt = defaultdict(int)
+
+    for prod,val in dp.items():
+        for d in range(10):
+            nxt_prod = min(INF,prod*d)
+            nxt[nxt_prod] += val
+    for d in range(digit):
+        if i==0 and d ==0:
+            continue
+        nxt_prod = min(INF,eq_prod*d)
+        nxt[nxt_prod] += 1
+
+    eq_prod = min(INF,eq_prod*digit)
+    if i != 0:
+        for d in range(1, 10):
+            nxt_prod = min(INF, d)
+            nxt[nxt_prod] += 1
+    dp = nxt
+ans = 0
+for p,v in dp.items():
+    if p<=K:
+        ans += v
+if eq_prod<=K:
+    ans += 1
+print(ans)
