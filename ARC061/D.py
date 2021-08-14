@@ -10,21 +10,19 @@ INF = float('inf')
 
 h,w,n = map(int,input().split())
 s = set()
-chk = defaultdict(int)
 ANS = [0]*10
-dic = defaultdict(lambda:defaultdict(int))
 for i in range(n):
     a,b = map(int,input().split())
     s.add((a,b))
-    dic[a][b] += 1
 # print(dic)
 def helper(i,j):
-    if i<1 or i>h-2 or j<1 or j>w-2 or chk[(i,j)]:
+    if i<1 or i>h-2 or j<1 or j>w-2:
         return
     ans = 0
     for ii in range(3):
         for jj in range(3):
-            ans += dic[i+ii][j+jj]
+            if (i+ii,j+jj) in s:
+                ans += 1
     if ans>0:
         ANS[ans] += 1
 
