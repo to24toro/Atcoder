@@ -12,33 +12,14 @@ dy = [0,0,1,-1]
 MOD = 10**9+7
 
 n,k = map(int,input().split())
-def get_sieve_of_eratosthenes_new(n):
-    import math
-    if not isinstance(n, int):
-        raise TypeError('n is int type.')
-    if n < 2:
-        raise ValueError('n is more than 2')
-    prime = []
-    limit = math.sqrt(n)
-    data = [i + 1 for i in range(1, n)]
-    while True:
-        p = data[0]
-        if limit <= p:
-            return prime + data
-        prime.append(p)
-        data = [e for e in data if e % p != 0]
-L = get_sieve_of_eratosthenes_new(n)
-ans =0
+p = [0]*(n+1)
 for i in range(2,n+1):
-    cnt = set()
-    s = 0
-    I = i
-    for l in L:
-        while i%l==0:
-            if l not in cnt:
-                s += 1
-                cnt.add(l)
-            i//=l
-    if s>=k:
-        ans += 1
-print(ans)
+    if p[i] != 0:
+        continue
+    for j in range(i,n+1,i):
+        p[j] += 1
+cnt = 0
+for j in range(n+1):
+    if p[j]>=k:
+        cnt += 1
+print(cnt)
