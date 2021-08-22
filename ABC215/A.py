@@ -7,3 +7,7 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
+if input()=="Hello,World!":
+    print('AC')
+else:
+    print('WA')

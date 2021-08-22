@@ -7,3 +7,4 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
+n = int(input())

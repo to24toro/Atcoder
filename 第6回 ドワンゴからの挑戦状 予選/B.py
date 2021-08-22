@@ -17,6 +17,8 @@ q = 1
 for i in range(2,n):
     q*=i
     q %=MOD
+
+
 for i in range(2,n):
     P.append(P[-1]+pow(i,MOD-2,MOD))
 for i in range(n-1):

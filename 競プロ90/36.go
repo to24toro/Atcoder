@@ -171,47 +171,48 @@ func factorial(n, m int) ([]int, []int) {
 }
 
 func AbsI(x int) int {
-    if x<0 {
-        return -x
-    }
-    return x
+	if x < 0 {
+		return -x
+	}
+	return x
 }
 
 func AbsF(x float64) float64 {
-    if x<0 {
-        return -x
-    }
-    return x
+	if x < 0 {
+		return -x
+	}
+	return x
 }
 func main() {
-    buf := make([]byte, 1024*1024)
+	buf := make([]byte, 1024*1024)
 	sc.Buffer(buf, bufio.MaxScanTokenSize)
 	sc.Split(bufio.ScanWords)
-    n,q := iScan(),iScan()
-    x := make([]int,n)
-    y := make([]int,n)
-    xd := make([]int,n)
-    yd := make([]int,n)
-    for i:=0;i<n;i++ {
-        x[i],y[i] = iScan(),iScan()
-        xd[i] = x[i]-y[i]
-        yd[i] = x[i]+y[i]
-    }
-    minx,maxx :=xd[0],xd[0]
-    miny,maxy :=yd[0],yd[0]
-    for i:=0;i<n;i++ {
-        minx = min(minx,xd[i])
-        maxx = max(maxx,xd[i])
-        miny = min(miny,yd[i])
-        maxy = max(maxy,yd[i])
-    } 
-    for i:=0;i<q;i++ {
-        qi := iScan()
-        qi--
-        d1 := AbsI(xd[qi]-minx)
-        d2 := AbsI(xd[qi]-maxx)
-        d3 := AbsI(yd[qi]-miny)
-        d4 := AbsI(yd[qi]-maxy)
-        fmt.Println(max(d1,d2,d3,d4))
-    }
+	n, q := iScan(), iScan()
+	x := make([]int, n)
+	y := make([]int, n)
+	xd := make([]int, n)
+	yd := make([]int, n)
+	for i := 0; i < n; i++ {
+		x[i], y[i] = iScan(), iScan()
+		xd[i] = x[i] - y[i]
+		yd[i] = x[i] + y[i]
+	}
+	minx, maxx := xd[0], xd[0]
+	miny, maxy := yd[0], yd[0]
+	for i := 0; i < n; i++ {
+		minx = min(minx, xd[i])
+		maxx = max(maxx, xd[i])
+		miny = min(miny, yd[i])
+		maxy = max(maxy, yd[i])
+	}
+	fmt.Println(max(minx))
+	for i := 0; i < q; i++ {
+		qi := iScan()
+		qi--
+		d1 := AbsI(xd[qi] - minx)
+		d2 := AbsI(xd[qi] - maxx)
+		d3 := AbsI(yd[qi] - miny)
+		d4 := AbsI(yd[qi] - maxy)
+		fmt.Println(max(d1, d2, d3, d4))
+	}
 }
