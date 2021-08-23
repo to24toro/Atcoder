@@ -1,3 +1,9 @@
+from collections import defaultdict
+
+
+n,m = map(int,input().split())
+A = list(map(int,input().split()))
+B = list(map(int,input().split()))
 class UnionFind():
     def __init__(self, n):
         self.n = n
@@ -44,24 +50,23 @@ class UnionFind():
 
     def __str__(self):
         return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
-
-n,m = map(int,input().split())
-A = list(map(int,input().split()))
-B = list(map(int,input().split()))
-from collections import defaultdict
-da = defaultdict(int)
-db = defaultdict(int)
 uf = UnionFind(n)
 for i in range(m):
-    c,d = map(int,input().split())
-    c-=1
-    d-=1
-    uf.unite(c,d)
+    a,b = map(int,input().split())
+    a-=1
+    b-=1
+    uf.unite(a,b)
+
+da = defaultdict(int)
+db = defaultdict(int)
+
 for i in range(n):
-    x = uf.find(i)
-    da[x]+=A[i]
-    db[x]+=B[i]
-for key in da.keys():
-    if da[key]!=db[key]:
-        print('No');exit()
+    ii = uf.find(i)
+    da[ii]+=A[i]
+    db[ii]+=B[i]
+
+for k,v in da.items():
+    if v!=db[k]:
+        print('No')
+        exit()
 print('Yes')
