@@ -1,27 +1,23 @@
 n = int(input())
 g = [[] for _ in range(n)]
 for _ in range(n-1):
-    u,v,w = map(int,input().split())
-    u-=1
-    v-=1
-    w %=2
-    g[u].append((v,w))
-    g[v].append((u,w))
+    a,b,c = map(int,input().split())
+    a-=1;b-=1
+    g[a].append((c,b))
+    g[b].append((c,a))
 
-color = [-1]*n
-
+s = [-1]*n
 from collections import deque
 q = deque([(0,0)])
-color[0]=0
+s[0] = 0
 while q:
-    x,c = q.popleft()
-    for y,w in g[x]:
-        if color[y]<0:
-            color[y]=(c+w)%2
-            q.append((y,(c+w)%2))
-        elif color[y]!=(c+w)%2:
-            print(-1)
-            exit()
-        else:
-            continue
-print(*color,sep='\n')
+    color,x = q.popleft()
+    for d,y in g[x]:
+        if s[y]==-1:
+            if d%2:
+                s[y]=1-color
+                q.append((1-color,y))
+            else:
+                s[y]=color
+                q.append((color,y))
+print(*s,sep='\n')
