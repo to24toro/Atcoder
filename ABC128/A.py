@@ -7,3 +7,5 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
+a,p = map(int,input().split())
+print((3*a+p)//2)

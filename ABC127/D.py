@@ -19,13 +19,17 @@ for _ in range(m):
     b,c = map(int,input().split())
     L.append((b,c))
 L.sort(reverse=True)
+f =False
+cnt = 0
 for b,c in L:
     for i in range(b):
+        cnt+=1
         B.append(c)
-        if len(B)==n:
+        if cnt==n:
+            f =True
             break
-    else:
-        continue
+    if f:
+        break
 C = A+B
 C.sort(reverse=True)
 print(sum(C[:n]))
