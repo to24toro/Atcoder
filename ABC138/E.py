@@ -15,7 +15,7 @@ pre = -1
 cnt = 0
 for i,t in enumerate(T):
     l = dic[t]
-    if len(l)==0:
+    if not l:
         print(-1);exit()
     idx = bisect_right(l,pre)
     if idx==len(l):
@@ -23,5 +23,4 @@ for i,t in enumerate(T):
         pre = l[0]
     else:
         pre = l[idx]
-
 print(cnt*len(S)+pre+1)
