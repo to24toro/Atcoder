@@ -3,11 +3,12 @@ from collections import *
 from heapq import *
 from bisect import *
 from copy import *
+from array import *
 import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
-
+#周期余り問題
 n,x,m = map(int,input().split())
 
 h = {}

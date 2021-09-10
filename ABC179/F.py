@@ -3,55 +3,155 @@ from collections import *
 from heapq import *
 from bisect import *
 from copy import *
+from array import *
 import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
-N,Q=map(int, input().split())
-class Bit:
-    def __init__(self, n):
-        self.size = n
-        self.tree = [0] * (n + 1)
- 
-    def sum(self, i):
-        s = 0
-        while i > 0:
-            s += self.tree[i]
-            i -= i & -i
-        return s
+#####segfunc#####
+def segfunc(x, y):
+    return min(x, y)
+#################
 
-    def add(self, i, x):
-        """i=0には足せない"""
-        while i <= self.size:
-            self.tree[i] += x
-            i += i & -i
-ret=pow(N-2,2)
-tree1=Bit(N)
-tree1.add(1,N-2)
-tree2=Bit(N)
-tree2.add(1,N-2)
-stop1=[N]
-stop2=[N]
-for _ in range(Q):
-    t,x=map(int, input().split())
-    if t==1:
-        tree_x=tree1
-        tree_y=tree2
-        stop_x=stop1
-        stop_y=stop2
+#####ide_ele#####
+ide_ele = 2**31 - 1
+#################
+
+class LazySegmentTree:
+    """
+    init(init_val, ide_ele): 配列init_valで初期化 O(N)
+    update(l, r, x): 区間[l, r)をxに更新 O(logN)
+    query(l, r): 区間[l, r)をsegfuncしたものを返す O(logN)
+    """
+    def __init__(self, init_val, segfunc, ide_ele):
+        """
+        init_val: 配列の初期値
+        segfunc: 区間にしたい操作
+        ide_ele: 単位元
+        num: n以上の最小の2のべき乗
+        data: 値配列(1-index)
+        lazy: 遅延配列(1-index)
+        """
+        n = len(init_val)
+        self.segfunc = segfunc
+        self.ide_ele = ide_ele
+        self.num = 1 << (n - 1).bit_length()
+        self.data = [ide_ele] * 2 * self.num
+        self.lazy = [None] * 2 * self.num
+        # 配列の値を葉にセット
+        for i in range(n):
+            self.data[self.num + i] = init_val[i]
+        # 構築していく
+        for i in range(self.num - 1, 0, -1):
+            self.data[i] = self.segfunc(self.data[2 * i], self.data[2 * i + 1])
+
+    def gindex(self, l, r):
+            """
+            伝搬する対象の区間を求める
+            lm: 伝搬する必要のある最大の左閉区間
+            rm: 伝搬する必要のある最大の右開区間
+            """
+            l += self.num
+            r += self.num
+            lm = l >> (l & -l).bit_length()
+            rm = r >> (r & -r).bit_length()
+
+            while r > l:
+                if l <= lm:
+                    yield l
+                if r <= rm:
+                    yield r
+                r >>= 1
+                l >>= 1
+            while l:
+                yield l
+                l >>= 1
+
+    def propagates(self, *ids):
+        """
+        遅延伝搬処理
+        ids: 伝搬する対象の区間 
+        """
+        for i in reversed(ids):
+            v = self.lazy[i]
+            if v is None:
+                continue
+            self.lazy[2 * i] = v
+            self.lazy[2 * i + 1] = v
+            self.data[2 * i] = v
+            self.data[2 * i + 1] = v
+            self.lazy[i] = None
+
+    def update(self, l, r, x):
+        """
+        区間[l, r)の値をxに更新
+        l, r: index(0-index)
+        x: update value
+        """
+        *ids, = self.gindex(l, r)
+        self.propagates(*ids)
+        l += self.num
+        r += self.num
+        while l < r:
+            if l & 1:
+                self.lazy[l] = x
+                self.data[l] = x
+                l += 1
+            if r & 1:
+                self.lazy[r - 1] = x
+                self.data[r - 1] = x
+            r >>= 1
+            l >>= 1
+        for i in ids:
+            self.data[i] = self.segfunc(self.data[2 * i], self.data[2 * i + 1])
+
+
+    def query(self, l, r):
+        """
+        [l, r)のsegfuncしたものを得る
+        l: index(0-index)
+        r: index(0-index)
+        """
+        *ids, = self.gindex(l, r)
+        self.propagates(*ids)
+
+        res = self.ide_ele
+
+        l += self.num
+        r += self.num
+        while l < r:
+            if l & 1:
+                res = self.segfunc(res, self.data[l])
+                l += 1
+            if r & 1:
+                res = self.segfunc(res, self.data[r - 1])
+            l >>= 1
+            r >>= 1
+        return res
+n,q = map(int,input().split())
+ide_ele = n-1
+a = [n-2]*(n)
+tate = LazySegmentTree(a, segfunc, ide_ele)
+yoko = LazySegmentTree(a, segfunc, ide_ele)
+tate.update(n-1,n,0)
+yoko.update(n-1,n,0)
+tate.update(0,1,0)
+yoko.update(0,1,0)
+res = (n - 2) * (n - 2)
+for _ in range(q):
+    i,x = map(int,input().split())
+    x-=1
+    if i==1:
+        val = yoko.query(x,x+1)
+        print("A",val)
+        res-=val
+        tate.update(0,val+1,x-1)
+        yoko.update(x,x+1,0)
     else:
-        tree_x=tree2
-        tree_y=tree1
-        stop_x=stop2
-        stop_y=stop1
-    v=tree_x.sum(x)
-    ret-=v
-    if x<stop_x[0]:
-        stop_x[0]=x
-        # N-2 -> 1
-        y=N-1-v
-        w=tree_y.sum(1)
-        # w->x-2
-        tree_y.add(1,x-2-w)
-        tree_y.add(stop_y[0], w-x+2)
-print(ret)
+        val = tate.query(x,x+1)
+        print("B",val)
+        res-=val
+        yoko.update(0,val+1,x-1)
+        tate.update(x,x+1,0)
+print(res)
+
