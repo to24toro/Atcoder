@@ -2,6 +2,10 @@ n,k = map(int,input().split())
 P = list(map(lambda x:int(x)-1,input().split()))
 C = list(map(int,input().split()))
 ans = -float('inf')
+score = 0
+p = 0
+
+
 for i in range(n):
     j = i
     s = 0

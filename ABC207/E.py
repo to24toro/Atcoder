@@ -8,63 +8,21 @@ import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 n = int(input())
-class UnionFind():
-    def __init__(self, n):
-        self.n = n
-        self.parents = [-1] * n
+MOD = 10**9+7
+A = list(map(int,input().split()))
+SUM = [0] + list(accumulate(A))
 
-    def find(self, x):
-        if self.parents[x] < 0:
-            return x
-        else:
-            self.parents[x] = self.find(self.parents[x])
-            return self.parents[x]
-
-    def unite(self, x, y):
-        x = self.find(x)
-        y = self.find(y)
-
-        if x == y:
-            return
-
-        if self.parents[x] > self.parents[y]:
-            x, y = y, x
-
-        self.parents[x] += self.parents[y]
-        self.parents[y] = x
-
-    def size(self, x):
-        return -self.parents[self.find(x)]
-
-    def same(self, x, y):
-        return self.find(x) == self.find(y)
-
-    def members(self, x):
-        root = self.find(x)
-        return [i for i in range(self.n) if self.find(i) == root]
-
-    def roots(self):
-        return [i for i, x in enumerate(self.parents) if x < 0]
-
-    def group_count(self):
-        return len(self.roots())
-
-    def all_group_members(self):
-        return {r: self.members(r) for r in self.roots()}
-
-    def __str__(self):
-        return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
-uf = UnionFind(n)
-for _ in range(n-1):
-    u,v = map(int,input().split())
-    u-=1
-    v-=1
-    uf.unite(u,v)
-A =  []
-dic = defaultdict(int)
-for i in range(n):
-    ii = uf.find(i)
-    dic[ii]+=1
-for k,v in dic.items():
-    A.append(v)
-print(A)
+idx = [[-1]*(n+1) for _ in range(n+1)]
+pre = [[-1]*(n+1) for _ in range(n+1)]
+for i in range(n+1):
+    for j in range(1,n+1):
+        idx[i][j] = pre[j][SUM[i]%j]
+        pre[j][SUM[i]%j] = i
+DP=[[0]*(n+1) for i in range(n+1)]
+DP[0][0]=1
+for i in range(1,n+1):
+    for j in range(1,n+1):
+        if idx[i][j] !=-1:
+            DP[i][j]=(DP[idx[i][j]][j]+DP[idx[i][j]][j-1])%MOD
+ 
+print(sum(DP[n])%MOD)
