@@ -8,8 +8,8 @@ def rec(s,v):
         dp[s][v]=0
         return dp[s][v]
     res = float('inf')
-    for i in range(n):
-        if !((s>>i)&1):
+    for u in range(n):
+        if not ((s>>u)&1):
             res = min(res,rec(s|1<<u,u)+d[v][u])
     dp[s][v]=res
     return res
