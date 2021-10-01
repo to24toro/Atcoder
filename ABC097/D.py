@@ -6,6 +6,7 @@ from copy import *
 from array import *
 import math
 import sys
+from typing import Union
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 class UnionFind():
@@ -54,58 +55,18 @@ class UnionFind():
 
     def __str__(self):
         return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
-
-N,M = map(int,input().split())
-uf = UnionFind(N)
-g = [[] for _ in range(N)]
-for _ in range(M):
+n,m = map(int,input().split())
+P = list(map(lambda x:int(x)-1, input().split()))
+uf = UnionFind(n)
+ans = 0
+for _ in range(m):
     a,b = map(int,input().split())
     a-=1
     b-=1
     uf.unite(a,b)
-    g[a].append(b)
-    g[b].append(a)
-
-
-# def dfs(x,pre):
-#     for y in g[x]:
-#         if y==pre:continue
-#         if L[y] == L[x] and L[x]!=-1:
-#             return False
-#         L[y] = (dic[y]+L[x])%3
-#     return True
-def helper(s):
-    n = len(s)-1
-    
-    ans = 0
-    def dfs(x,pre):
-        ans = 1
-        for y in g[x]:
-            if y==pre:continue
-            if L[y] == L[x] and L[x]!=-1:
-                return 0
-            if L[y]!=-1:continue
-            L[y] = (dic[y]+L[x])%3
-            ans *=dfs(y,x)
-        return ans
-    for bit in range(1<<n):
-        L = [-1]*N
-        L[s[0]] = 0
-        dic = defaultdict(int)
-        for i in range(n):
-            if (bit>>i)&1:
-                dic[s[i+1]] = 2
-            else:
-                dic[s[i+1]] = 1
-        flag = dfs(s[0],-1)
-        if flag:
-            ans += 1
-    return ans
-Ans = 1
-D = defaultdict(list)
-for i in range(N):
-    D[uf.find(i)].append(i)
-# print(D)
-for k,li in D.items():
-    Ans *= helper(li)*3
-print(Ans)
+for i,p in enumerate(P):
+    x = uf.find(i)
+    y = uf.find(p)
+    if x==y:
+        ans += 1
+print(ans)

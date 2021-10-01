@@ -10,7 +10,12 @@ sys.setrecursionlimit(1<<20)
 INF = float('inf')
 n = int(input())
 A = list(map(int,input().split()))
-B = list(map(int,input().split()))
-m = max(A)
-n = min(B)
-print(max(0,n-m+1))
+s = A[0]
+ans,r = 0,1
+for l in range(n):
+    while r<n and s + A[r] ==s^A[r]: ##ここに条件かく
+        s += A[r]
+        r += 1
+    ans +=r-l
+    s-=A[l]
+print(ans)
