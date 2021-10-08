@@ -1,46 +1,56 @@
+from itertools import *
+from collections import *
+from heapq import *
+from bisect import *
+from copy import *
+from array import *
+import math
+import sys
+sys.setrecursionlimit(1<<20)
+INF = float('inf')
 n,m,k = map(int,input().split())
 A = list(map(int,input().split()))
-M = [[0]*n for _ in range(n)]
+MOD = 10**9+7
+B = [[0]*n for _ in range(n)]
 g = [[] for _ in range(n)]
-mod = 10**9+7
-invM=pow(m,mod-2,mod)
-inv2=pow(2,mod-2,mod)
-
-for _ in range(m):
-    x,y = map(lambda x:int(x)-1 ,input().split())
+for i in range(m):
+    x,y = map(int,input().split())
+    x-=1;y-=1
     g[x].append(y)
     g[y].append(x)
-
-
+m1 = pow(2*m,MOD-2,MOD)
 for i in range(n):
-    M[i][i] = ((m-len(g[i]))*invM+len(g[i])*inv2*invM)%mod
+    t = len(g[i])
+    B[i][i] = (1-t*m1)%MOD
+for i in range(n):
     for j in g[i]:
-        M[j][i] = invM*inv2%mod
-def m(a,b):
-    r=[[0]*len(b[0]) for i in range(len(a))]
-    for i in range(len(a)):
-        for k in range(len(b)):
-            for j in range(len(b[0])):
-                r[i][j]=(r[i][j]+a[i][k]*b[k][j])%mod
-    return r
- 
-def p(a,n):
-  r=[[0]*len(a) for i in range(len(a))]
-  b=[]
-  for i in range(len(a)):
-    r[i][i]=1
-    b.append(a[i][:])
-  l=n
-  while l>0:
-    if l&1:
-      r=m(b,r)
-    b=m(b,b)
-    l>>=1
-  return r
+        if i!=j:
+            B[i][j] = m1
 
-Y=[[0]*n for i in range(n)]
+def mat_mul(a,b):
+    I,J,K = len(a),len(b[0]),len(b)
+    c = [[0]*J for _ in range(I)]
+    for i in range(I):
+        for j in range(J):
+            for k in range(K):
+                c[i][j] += a[i][k]*b[k][j]
+                c[i][j] %= MOD
+    return c
+
+def mat_pow(x,n):
+    y = [[0]*len(x) for _ in range(len(x))]
+    for i in range(len(x)):
+        y[i][i] = 1
+    while n:
+        if n&1:
+            y = mat_mul(x,y)
+        x = mat_mul(x,x)
+        n>>=1
+    return y
+AA = mat_pow(B,k)
+ANS = [0]*n
 for i in range(n):
-  Y[i][-1]=A[i]
-Z=m(p(M,k),Y)
-for i in range(n):
-  print(Z[i][-1])
+    for j in range(n):
+        ANS[i]+=AA[i][j]*A[j]
+        ANS[i]%=MOD
+print(*ANS,sep="\n")

@@ -51,7 +51,7 @@ class  MultipleFactorization:
             x//=k
         return cnt
 multi = MultipleFactorization(n)
-
+print(multi.prime())
 ans =0
 for i in range(2,n+1):
     cnt = multi.count_prime(i)
