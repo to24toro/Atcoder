@@ -5,9 +5,7 @@ from bisect import *
 from copy import *
 import math
 import sys
-import numba
-from numba import njit, b1, i1, i4, i8, f8
-import numpy as np
+
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
 L,R = map(int,input().split())
@@ -40,6 +38,22 @@ class MultipleFactorization:
             x //= k
         return factors
 mf = MultipleFactorization(R + 1)
+
+# for i in range(2,R+1):
+#     f = mf.factorization(i)
+#     l = len(f)
+#     if l!=len(set(f)):
+#         continue
+#     c = (R//i)-((L-1)//i)
+#     tmp = c*(c-1)//2
+#     if l%2:
+#         ans += tmp
+#     else:
+#         ans-=tmp
+#     if i>=max(2,L):
+#         ans-=R//i-1
+# print(2*ans)
+ans = 0
 for i in range(2, R + 1):
     f = mf.factorization(i)
     if len(set(f)) != len(f):
@@ -48,9 +62,9 @@ for i in range(2, R + 1):
     c = (R//i)-((L-1)//i)
     tmp = c*(c-1)//2
     if l%2:
-        ans-=tmp
-    else:
         ans+=tmp
+    else:
+        ans-=tmp
 for i in range(max(2, L), R + 1):
     ans -= R // i - 1
 ans *= 2

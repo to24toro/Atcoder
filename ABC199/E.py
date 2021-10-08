@@ -1,38 +1,24 @@
 n,m = map(int,input().split())
-g = [[] for _ in range(n+1)]
-for _ in range(m):
-    x,y,z = map(int,input().split())
-    g[x].append((y,z))
-dp = [0 for _ in range(1<<n)]
-dp[0]=1
-for i in range(1<<n):
-    if dp[i]==0:
-        continue
-    count = [0]*(n+1)
-    bi = 0
-    num = dp[i]
-    for j in range(n):
-        if (i>>j)&1:
-            count[j+1]+=1
-            bi+=1
-    for j in range(n):
-        count[j+1]+=count[j]
-    for j in range(n):
-        if (i>>j)&1:
-            continue
-        check = True
-        for y,z in g[bi+1]:
-            if j+1<=y:
-                if count[y]+1>z:
-                    check=False
-                    break
-            else:
-                if count[y]>z:
-                    check=False
-                    break
-        if check:
-            dp[i|1<<j]+=num
+L = [list(map(int,input().split())) for _ in range(m)]
+
+dp = [0]*(1<<n)
+dp[0] = 1
+for b in range(1<<n):
+    s = 0
+    num = []
+    for i in range(n):
+        if (b>>i)&1:
+            s += 1
+        num.append(s)
+    f = True
+    for i in range(m):
+        x,y,z = L[i]
+        if x>=s:
+            if num[y-1]>z:
+                f =False
+                break
+    if f:
+        for i in range(n):
+            if (b>>i)&1:
+                dp[b] += dp[b&~(1<<i)]
 print(dp[-1])
-
-
-
