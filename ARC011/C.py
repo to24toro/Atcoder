@@ -1,42 +1,42 @@
-# first,last = map(str,input().split())
-# N = int(input())
-# set_ = set()
-# for i in range(N):
-#     set_.add(input())
-# set_.add(first)
-# set_.add(last)
-# from collections import defaultdict,deque
-# dic = defaultdict(list)
-# if len(first)!=len(last):print(-1);exit()
-# if first==last:
-#     print(0)
-#     print(first)
-#     print(last)
-#     exit()
-# n = len(first)
+first,last = map(str,input().split())
+N = int(input())
+set_ = set()
+for i in range(N):
+    set_.add(input())
+set_.add(first)
+set_.add(last)
+from collections import defaultdict,deque
+dic = defaultdict(list)
+if len(first)!=len(last):print(-1);exit()
+if first==last:
+    print(0)
+    print(first)
+    print(last)
+    exit()
+n = len(first)
 
-# for word in set_:
-#     for i in range(n):
-#         for j in range(26):
-#             w = word[:i]+chr(ord('a')+j)+word[i+1:]
-#             if w==word:continue
-#             if w in set_:
-#                 dic[word].append(w)
-# q =deque([(first,0,[first])])
-# set_w = set()
-# set_w.add(first)
-# while q:
-#     word,cnt,l = q.popleft()
-#     if word==last:
-#         print(cnt-1)
-#         for i in l:
-#             print(i)
-#         exit()
-#     for w in dic[word]:
-#         if w not in set_w:
-#             set_w.add(w)
-#             q.append((w,cnt+1,l+[w]))
-# print(-1)
+for word in set_:
+    for i in range(n):
+        for j in range(26):
+            w = word[:i]+chr(ord('a')+j)+word[i+1:]
+            if w==word:continue
+            if w in set_:
+                dic[word].append(w)
+q =deque([(first,0,[first])])
+set_w = set()
+set_w.add(first)
+while q:
+    word,cnt,l = q.popleft()
+    if word==last:
+        print(cnt-1)
+        for i in l:
+            print(i)
+        exit()
+    for w in dic[word]:
+        if w not in set_w:
+            set_w.add(w)
+            q.append((w,cnt+1,l+[w]))
+print(-1)
 
 from scipy.sparse import *
 from collections import defaultdict
