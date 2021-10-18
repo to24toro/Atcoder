@@ -62,12 +62,10 @@ for i in range(1,lx+1):
         dp[i][j]%=MOD
 L = dp[-1]
 ans = 0
-print(L)
 for i,l in enumerate(L):
     b = i
     r = s-b
-    print(r,b,K,i)
-    if r-b==K:
+    if r-b==K and r>=0 and b>=0:
         ans += l
 print(ans%MOD)
 # for b in range(lx):
