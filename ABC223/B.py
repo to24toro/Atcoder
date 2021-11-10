@@ -8,6 +8,10 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
-
-a,b = map(int,input().split())
-print(pow(32,a-b))
+x = int(input())
+if x%100!=0:
+    print('No')
+    exit()
+if x<100:
+    print('No');exit()
+print('Yes')

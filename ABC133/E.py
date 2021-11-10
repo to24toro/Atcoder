@@ -18,15 +18,18 @@ for _ in range(n-1):
     b-=1
     g[a].append(b)
     g[b].append(a)
-def dfs(now,pre,val):
-    res = val
-    c = 1
-    if now!=0:c+=1
-    for nxt in g[now]:
-        if nxt!=pre:
-            res *= dfs(nxt,now,k-c)
-            c+=1
-            res%=mod
-    return res
 
-print(dfs(0,-1,k))
+def dfs(i,pre,rest):
+    res = rest
+    used = 1
+    if i>0:used+=1
+    if k<len(g[i]):return 0
+    for j in g[i]:
+        if j==pre:continue
+        res*=dfs(j,i,k-used)
+        res%=mod
+        used+=1
+    return res%mod
+
+res = (dfs(0,-1,k))
+print(res)

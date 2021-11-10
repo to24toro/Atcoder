@@ -8,6 +8,3 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
-
-a,b = map(int,input().split())
-print(pow(32,a-b))

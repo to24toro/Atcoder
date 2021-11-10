@@ -1,6 +1,7 @@
 #!bin/bash
 
-for val in {96..99}
+
+for val in {222..230}
 do
-    cp -r "ABC" "ABC0${val}"
+    cp -r "ABC" "ABC${val}"
 done
