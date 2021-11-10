@@ -21,10 +21,9 @@ while r-l>1:
     m = (r+l)//2
     cnt = 0
     for a in A:
-        n = m/a
+        n = m//a
         idx = bisect_right(B,n)
         cnt += idx
-    print(r,l)
     if cnt<k:
         l = m
     else:

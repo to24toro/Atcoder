@@ -18,6 +18,6 @@ for a in A:
 for i in range(n-k+1):
     res = S[i]+S[-1]-S[i+k]
     res2 =res+T[i+k]-T[i]
-    print(res,res2,i)
+    # print(res,res2,i)
     ans =max(ans,res,res2)
 print(ans)
