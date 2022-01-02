@@ -8,38 +8,22 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
-
 n,m = map(int,input().split())
-d = defaultdict(lambda :defaultdict(int))
-g = [[] for _ in range(n)]
-for _ in range(m):
-    a,b = map(int,input().split())
-    a-=1
-    b-=1
-    d[a][b] = 1
-    d[b][a] = 1
-    g[a].append(b)
-    g[b].append(a)
+
+g = [list() for i in range(n)]
+for i in range(m):
+    A, B = map(int, input().split())
+    A -= 1
+    B -= 1
+    g[A].append(B)
+    g[B].append(A)
 k = int(input())
-C = list(map(lambda x:int(x)-1, input().split()))
-dp = [[-1]*n for _ in range(1<<n)]
+C = list(map(int, input().split()))
+for i in range(k):
+    C[i] -= 1
 
-def rec(s,v):
-    if dp[s][v]>=0:
-        return dp[s][v]
-    if (s==(1<<n)-1 and v==0):
-        dp[s][v]=0
-        return dp[s][v]
-    res = float('inf')
-    for u in range(n):
-        if not ((s>>u)&1):
-            if d[v][u]:
-                res = min(res,rec(s|1<<u,u)+d[v][u])
-    dp[s][v]=res
-    return res
 
-rec(0,0)
-def bfs(s):
+def BFS(s):
     cost = [INF] * n
     cost[s] = 0
     q = deque([s])
@@ -50,4 +34,21 @@ def bfs(s):
                 cost[y] = cost[x] + 1
                 q.append(y)
     return [cost[c] for c in C]
-cost = [bfs(c) for c in C]
+ 
+d = [BFS(c) for c in C]
+dp = [[INF] * k for _ in range(1 << k)]
+for i in range(k):
+    dp[1 << i][i] = 1
+ 
+for bit in range(1 << k):
+    for i in range(k):
+        if dp[bit][i] == INF:
+            continue
+        for j in range(k):
+            if bit & 1 << j:
+                continue
+            if dp[bit ^ 1 << j][j] > dp[bit][i] + d[i][j]:
+                dp[bit ^ 1 << j][j] = dp[bit][i] + d[i][j]
+ans = min(dp[-1])
+# print(dp)
+print(ans if ans!=INF else -1)

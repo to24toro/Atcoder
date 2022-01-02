@@ -8,6 +8,8 @@ sys.setrecursionlimit(1<<20)
 n = int(input())
 A = list(map(int,input().split()))
 
+
+
 mn = min(A)
 mx = max(A)
 idn = A.index(mn)
