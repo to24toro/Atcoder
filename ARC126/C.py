@@ -9,23 +9,22 @@ sys.setrecursionlimit(1<<20)
 INF = float('inf')
 n,k = map(int,input().split())
 A = list(map(int,input().split()))
-s = A[0]
-for a in A[1:]:
-    s = math.gcd(s,a)
-
-ok,ng = 0,10**19
-while ng-ok>1:
-    m = (2*ok+ng)//3
-    n = (ok+2*ng)//3
-    cnt1 = 0
-    cnt2 = 0
-    for a in A:
-        cnt1 += (m-a%m)%m
-        cnt2 += (n-a%n)%n
-    if cnt1>cnt2:
-        ok = cnt1
-    else:
-        ng = cnt2
-    print(cnt,m)
-print(max(s,ok))
-
+A.sort()
+m = max(A)
+S = [0] + list(accumulate(A))
+for x in range(1,m):
+    prev = 0
+    cur = x
+    need = 0
+    while True:
+        idx = bisect_right(A,cur)
+        need += cur*(idx-prev)-(S[idx]-S[prev])
+        if idx==n:break
+        prev = idx
+        cur += x
+    if need<=k:
+        ans = x
+ans1 = (k+sum(A))//n
+if ans1>=m:
+    ans = ans1
+print(ans)
