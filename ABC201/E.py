@@ -25,6 +25,18 @@ def dijkstra(start,graph,n):
                 dist[y]=d+d2
                 heapq.heappush(hq,(d+d2,y))
     return dist
+
+
+
+
+
+
+
+
+
+
+
+
 from collections import deque
 q = deque([(0,0)])
 seen = [-1]*n

@@ -8,6 +8,7 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
+<<<<<<< HEAD
 def make_divisors(n):
     lower_divisors , upper_divisors = [], []
     i = 1
@@ -42,3 +43,5 @@ while ll<rr:
     rr = r-1
 
 print(ans+n)
+=======
+>>>>>>> 7ef5272f22bc7d556fd1b34ce9cb0c92784a0a0b

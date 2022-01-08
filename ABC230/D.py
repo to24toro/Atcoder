@@ -8,6 +8,7 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
+<<<<<<< HEAD
 n,d = map(int,input().split())
 L = [list(map(int,input().split())) for _ in range(n)]
 L.sort(key = lambda x:x[1])
@@ -26,3 +27,5 @@ for l,r in L:
 if q:
     cnt += 1
 print(cnt)
+=======
+>>>>>>> 7ef5272f22bc7d556fd1b34ce9cb0c92784a0a0b

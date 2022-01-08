@@ -8,6 +8,7 @@ import math
 import sys
 sys.setrecursionlimit(1<<20)
 INF = float('inf')
+<<<<<<< HEAD
 n,a,b = map(int,input().split())
 p,q,r,s = map(int,input().split())
 x = q-p+1
@@ -30,3 +31,5 @@ for i in range(max(0,a+m-p),min(x,a+t-p)+1):
         S[i][yy-r] = '#'
 for s in S:
     print(''.join(s))
+=======
+>>>>>>> 7ef5272f22bc7d556fd1b34ce9cb0c92784a0a0b
